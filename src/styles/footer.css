@@ -1,0 +1,39 @@
+.contacto {
+    font-family: 'Fredoka';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 34px;
+    letter-spacing: 0.05em;
+    color: #FFFFFF;
+    text-shadow: 0px 4px 4px rgba(30, 30, 30, 0.6);
+}
+.buttonemail { 
+    font-family: 'Fredoka';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 34px;
+    letter-spacing: 0.05em;
+    color: #FFFFFF;
+    text-shadow: 0px 4px 4px rgba(30, 30, 30, 0.6);
+    background: linear-gradient(90deg, #EF5B50 0%, #662923 97.91%);
+    box-shadow: 0px 4px 4px rgba(30, 30, 30, 0.6);
+    border-radius: 60px;
+    border: none;
+}
+.buttonwhatsapp {
+    font-family: 'Fredoka';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 34px;
+    letter-spacing: 0.05em;
+    color: #FFFFFF;
+    text-shadow: 0px 4px 4px rgba(30, 30, 30, 0.6);
+    background: linear-gradient(270deg, #83D375 15.7%, #237018 137.21%);
+    box-shadow: 0px 4px 7px rgba(30, 30, 30, 0.6);
+    border-radius: 60px;
+    border: none;
+
+}
