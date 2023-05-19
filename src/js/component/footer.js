@@ -11,7 +11,7 @@ export const Footer = () => (
 				<span className="contacto">¿TIENES ALGUNA DUDA?</span>
 				<button className="buttonemail"><i className="far fa-paper-plane"></i> ESCRIBENOS UN MAIL</button>
 				<span className="contacto">O ESCRIBENOS UN WHATSAPP</span>
-				<button className="buttonwhatsapp"><i class="fab fa-whatsapp"></i> +56 9 710 3282</button>
+				<button className="buttonwhatsapp"><i className="fab fa-whatsapp"></i> +56 9 710 3282</button>
 			</div>
 		</div>
 

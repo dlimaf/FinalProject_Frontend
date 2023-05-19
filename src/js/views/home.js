@@ -4,12 +4,14 @@ import { Slider } from "../component/carrusel";
 import { Ofertas } from "../component/opciones";
 
 
+
 export const Home = () => {
 	
 	return (
 		<div className="home">
 			<Slider />
 			<Ofertas/>
+			
 		</div>
 	)
 }

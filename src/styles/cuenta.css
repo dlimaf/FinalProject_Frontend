@@ -1,0 +1,42 @@
+.fondocuenta {
+    background: #D9D9D9;
+    display: flex;
+    justify-content: center;
+}
+.cuadrocuenta {
+    width: 900px;
+    height: 500px;
+    margin: 50px;
+    background: #FFFFFF;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 60px;
+    display: flex;
+    justify-content: center;
+}
+.cuenta {
+    font-family: 'Fredoka';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 34px;
+    letter-spacing: 0.05em;    
+    color: #BE8123;
+}
+.pedido {
+    font-family: 'Fredoka';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 34px;
+    letter-spacing: 0.05em;    
+    color: #BE8123;
+}
+.pago {
+    font-family: 'Fredoka';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 34px;
+    letter-spacing: 0.05em;    
+    color: #BE8123;
+}

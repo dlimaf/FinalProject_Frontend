@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext} from "react";
 import "../../styles/card.css"
+import { Context } from "../store/appContext";
 
 export const Card = ({ title, image, content, price}) => {
+    const {store,actions} = useContext(Context) 
     return (
         <div className="card" style={{width: "18rem"}}>
             <img src={image} className="card-img-top" alt="..."/>
@@ -13,7 +15,7 @@ export const Card = ({ title, image, content, price}) => {
                     </div>
                     <div className="row">
                         <p className="card-text col-7">{content}</p>                            
-                        <button className="agregar col-5 pt-1">Agregar</button>
+                        <button onClick={()=>actions.addItem(title,price)} className="agregar col-5 pt-1">Agregar</button>
                 </div>
                 </div>
             </div>

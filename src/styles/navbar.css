@@ -1,5 +1,5 @@
 .img {
-    width: 210px;
+    width: 200px;
     height: auto;
     background: #FFFFFF;
     box-shadow: 5px 4px 10px rgba(0, 0, 0, 0.25);
@@ -66,17 +66,16 @@ nav {
     letter-spacing: 0.09em;
     color: #FFFFFF;
     text-shadow: 0px 4px 4px #237018;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: none;
 }
 #compra {
-    position: absolute;
-    top: 0px;
-    right: 30px;
     width: 120px;
     height: 80px; 
+    margin-left: 10%;
     background: #FFFFFF;
     box-shadow: 5px 4px 10px rgba(0, 0, 0, 0.25);
     border-radius: 0px 0px 25px 25px;
@@ -86,7 +85,57 @@ nav {
     z-index: 1;
 
 }
-#nav {
+#ul {
     position:absolute;
     left: 20%;
+    z-index: 1;
+}
+.checkbox {
+    display: none;
+}
+  
+.slider {
+    width: 60px;
+    height: 25px;
+    background-color: lightgray;
+    border-radius: 30px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    border: 3px solid transparent;
+    transition: .3s;
+    box-shadow: 0 0 10px 0 rgb(0, 0, 0, 0.25) inset;
+    cursor: pointer;
+}
+  
+.slider::before {
+    content: '';
+    display: block;
+    width: 90%;
+    height: 90%;
+    background-color: #D9D9D9;
+    transform: translateX(-30px);
+    border-radius: 30px;
+    transition: .3s;
+    box-shadow: 0 0 10px 3px rgb(0, 0, 0, 0.25);
+}
+  
+.checkbox:checked ~ .slider::before {
+    transform: translateX(30px);
+    box-shadow: 0 0 10px 3px rgb(0, 0, 0, 0.25);
+}
+  
+.checkbox:checked ~ .slider {
+    background-color: #8b8b89;
+}
+  
+.checkbox:active ~ .slider::before {
+    transform: translate(0);
+}
+
+#modonocturno {
+    color: #D9D9D9;
+}
+#modoclaro {
+    color: #D9D9D9;
 }

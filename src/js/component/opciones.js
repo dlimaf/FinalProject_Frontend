@@ -1,49 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "../../styles/ofertas.css";
 import { Card } from "../component/card.js";
-import hambur from "../../img/cheeseburger_card.png"
+import { Context } from "../store/appContext";
 
 export const Ofertas = () => {
 
-    const hamburguesas =[
-		{title:"CHEESE BURGER",image:"cheeseburger_card.png", content:"Queso Cheddar, Hamburgesa de Vacuno, doble pepinillo.",price:"$8,990"},
-		{title:"CHEESE BURGER",image:"cheeseburger_card.png", content:"Queso Cheddar, Hamburgesa de Vacuno, doble pepinillo.",price:"$8,990"},
-		{title:"CHEESE BURGER",image:"cheeseburger_card.png", content:"Queso Cheddar, Hamburgesa de Vacuno, doble pepinillo.",price:"$8,990"},
-		{title:"CHEESE BURGER",image:"cheeseburger_card.png", content:"Queso Cheddar, Hamburgesa de Vacuno, doble pepinillo.",price:"$8,990"},
-		{title:"CHEESE BURGER",image:"cheeseburger_card.png", content:"Queso Cheddar, Hamburgesa de Vacuno, doble pepinillo.",price:"$8,990"},
-		{title:"CHEESE BURGER",image:"cheeseburger_card.png", content:"Queso Cheddar, Hamburgesa de Vacuno, doble pepinillo.",price:"$8,990"},
-
-	]
-    const bebidas =[
-		{title:"SPRITE",image:"https://marcelohidalgo.cl/wp-content/uploads/Sprite-congelada.jpg", content:"Queso Cheddar, Hamburgesa de Vacuno, doble pepinillo.",price:"$8,990"},
-		{title:"SPRITE",image:"https://marcelohidalgo.cl/wp-content/uploads/Sprite-congelada.jpg", content:"Queso Cheddar, Hamburgesa de Vacuno, doble pepinillo.",price:"$8,990"},
-		{title:"SPRITE",image:"https://marcelohidalgo.cl/wp-content/uploads/Sprite-congelada.jpg", content:"Queso Cheddar, Hamburgesa de Vacuno, doble pepinillo.",price:"$8,990"},
-		{title:"SPRITE",image:"https://marcelohidalgo.cl/wp-content/uploads/Sprite-congelada.jpg", content:"Queso Cheddar, Hamburgesa de Vacuno, doble pepinillo.",price:"$8,990"},
-		{title:"SPRITE",image:"https://marcelohidalgo.cl/wp-content/uploads/Sprite-congelada.jpg", content:"Queso Cheddar, Hamburgesa de Vacuno, doble pepinillo.",price:"$8,990"},
-		{title:"SPRITE",image:"https://marcelohidalgo.cl/wp-content/uploads/Sprite-congelada.jpg", content:"Queso Cheddar, Hamburgesa de Vacuno, doble pepinillo.",price:"$8,990"},
-
-	]
-    const acompañamientos =[
-		{title:"PALITOS DE AJO",image:"https://mundosjumbo.cl/wp-content/uploads/sites/3/2021/06/GettyImages-1196410984-1.jpg", content:"Queso Cheddar, Hamburgesa de Vacuno, doble pepinillo.",price:"$8,990"},
-		{title:"PALITOS DE AJO",image:"https://mundosjumbo.cl/wp-content/uploads/sites/3/2021/06/GettyImages-1196410984-1.jpg", content:"Queso Cheddar, Hamburgesa de Vacuno, doble pepinillo.",price:"$8,990"},
-		{title:"PALITOS DE AJO",image:"https://mundosjumbo.cl/wp-content/uploads/sites/3/2021/06/GettyImages-1196410984-1.jpg", content:"Queso Cheddar, Hamburgesa de Vacuno, doble pepinillo.",price:"$8,990"},
-		{title:"PALITOS DE AJO",image:"https://mundosjumbo.cl/wp-content/uploads/sites/3/2021/06/GettyImages-1196410984-1.jpg", content:"Queso Cheddar, Hamburgesa de Vacuno, doble pepinillo.",price:"$8,990"},
-		{title:"PALITOS DE AJO",image:"https://mundosjumbo.cl/wp-content/uploads/sites/3/2021/06/GettyImages-1196410984-1.jpg", content:"Queso Cheddar, Hamburgesa de Vacuno, doble pepinillo.",price:"$8,990"},
-		{title:"PALITOS DE AJO",image:"https://mundosjumbo.cl/wp-content/uploads/sites/3/2021/06/GettyImages-1196410984-1.jpg", content:"Queso Cheddar, Hamburgesa de Vacuno, doble pepinillo.",price:"$8,990"},
-
-	]
-    const arma =[
-		{title:"CHEESE BURGER",image:"https://www.pizzapizza.cl/wp-content/uploads/2021/01/armatupizza-3.jpg", content:"Queso Cheddar, Hamburgesa de Vacuno, doble pepinillo.",price:"$8,990"},
-		{title:"CHEESE BURGER",image:"https://www.pizzapizza.cl/wp-content/uploads/2021/01/armatupizza-3.jpg", content:"Queso Cheddar, Hamburgesa de Vacuno, doble pepinillo.",price:"$8,990"},
-		{title:"CHEESE BURGER",image:"https://www.pizzapizza.cl/wp-content/uploads/2021/01/armatupizza-3.jpg", content:"Queso Cheddar, Hamburgesa de Vacuno, doble pepinillo.",price:"$8,990"},
-		{title:"CHEESE BURGER",image:"https://www.pizzapizza.cl/wp-content/uploads/2021/01/armatupizza-3.jpg", content:"Queso Cheddar, Hamburgesa de Vacuno, doble pepinillo.",price:"$8,990"},
-		{title:"CHEESE BURGER",image:"https://www.pizzapizza.cl/wp-content/uploads/2021/01/armatupizza-3.jpg", content:"Queso Cheddar, Hamburgesa de Vacuno, doble pepinillo.",price:"$8,990"},
-		{title:"CHEESE BURGER",image:"https://www.pizzapizza.cl/wp-content/uploads/2021/01/armatupizza-3.jpg", content:"Queso Cheddar, Hamburgesa de Vacuno, doble pepinillo.",price:"$8,990"},
-
-	]
-    
-    
+    const { store, actiones} = useContext(Context);    
     const [ opciones, setOpciones ] = useState("burgers")
+
     return (
         <div className="ms-5 mt-4">
             <ul className="nav nav-pills" id="pills-tab" role="tablist">
@@ -81,7 +45,7 @@ export const Ofertas = () => {
                 <div className="tab-pane fade show active" id="pills-burger" role="tabpanel" aria-labelledby="pills-burger-tab" tabIndex="0">
                     <div className="container mt-3">
                         <div className="row">
-                            {hamburguesas.map((hamburguesas,index)=>{
+                            {store.hamburguesas.map((hamburguesas,index)=>{
                                 return (
                                         <div className="col-md-4 mt-4" key={index}>
                                             <Card
@@ -100,7 +64,7 @@ export const Ofertas = () => {
                 <div className="tab-pane fade" id="pills-bebida" role="tabpanel" aria-labelledby="pills-bebida-tab" tabIndex="0">
                     <div className="container mt-3">
                             <div className="row">
-                                {bebidas.map((bebidas,index)=>{
+                                {store.bebidas.map((bebidas,index)=>{
                                     return (
                                             <div className="col-md-4 mt-4" key={index}>
                                                 <Card
@@ -119,7 +83,7 @@ export const Ofertas = () => {
                 <div className="tab-pane fade" id="pills-acompañamiento" role="tabpanel" aria-labelledby="pills-acompañamiento-tab" tabIndex="0">
                     <div className="container mt-3">
                             <div className="row">
-                                {acompañamientos.map((acompañamientos,index)=>{
+                                {store.acompañamientos.map((acompañamientos,index)=>{
                                     return (
                                             <div className="col-md-4 mt-4" key={index}>
                                                 <Card
@@ -138,7 +102,7 @@ export const Ofertas = () => {
                 <div className="tab-pane fade" id="pills-arma" role="tabpanel" aria-labelledby="pills-arma-tab" tabIndex="0">
                     <div className="container mt-3">
                             <div className="row">
-                                {arma.map((arma,index)=>{
+                                {store.arma.map((arma,index)=>{
                                     return (
                                             <div className="col-md-4 mt-4" key={index}>
                                                 <Card
