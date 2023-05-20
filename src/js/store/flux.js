@@ -2,6 +2,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			token: localStorage.getItem("token"),
+			user: null,
 			pedidos:[],
 			hamburguesas:[
 				{title:"CHEESE BURGER 1",image:"cheeseburger_card.png", content:"Queso Cheddar, Hamburgesa de Vacuno, doble pepinillo.",price:100.00},
@@ -40,38 +41,26 @@ const getState = ({ getStore, getActions, setStore }) => {
 		
 			],
 			
+			
 
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
 
+
 			loadSomeData: () => {
 				/**
 					fetch().then().then(data => setStore({ "foo": data.bar }))
 				*/
-				fetch("https://benbungle-probable-enigma-g97pvp5654p3vg45-3000.preview.app.github.dev/")
+				fetch("https://dlimaf-ubiquitous-spoon-r9w6qp57j4gc55q-3000.preview.app.github.dev/users/")
 				.then(resp=>resp.json())
 				.then(data=>{
-					console.log(data)
-					setStore({hamburguesas:data})
+					console.log("Este es mi data",data)
+					setStore({user:data})
 				})
 				.catch(error=>console.log(error))
 
-				fetch("https://benbungle-probable-enigma-g97pvp5654p3vg45-3000.preview.app.github.dev/")
-				.then(resp=>resp.json())
-				.then(data=>{
-					console.log(data)
-					setStore({bebidas:data})
-				})
-				.catch(error=>console.log(error))
-				
-				fetch("https://benbungle-probable-enigma-g97pvp5654p3vg45-3000.preview.app.github.dev/")
-				.then(resp=>resp.json())
-				.then(data=>{
-					console.log(data)
-					setStore({acompañamientos:data})
-				})
-				.catch(error=>console.log(error))
+
 
 			},
 
@@ -89,15 +78,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 				try {
 		
-					const resp = await fetch("https://dlimaf-vigilant-space-eureka-446v5wpq5xqfq5r9-3000.preview.app.github.dev/login",requestOptions)
+					const resp = await fetch("https://dlimaf-ubiquitous-spoon-r9w6qp57j4gc55q-3000.preview.app.github.dev/login",requestOptions)
 					if (!resp.ok) {
 						alert("There has been some error");
 						return false;
 					}
 					const data = await resp.json();
 					console.log("this came from the backend", data);
-					localStorage.setItem("user", JSON.stringify(data));
-					setStore({token:data.token});
+					localStorage.setItem("user", JSON.stringify(data.user));
+					setStore({token:data.token, user:data.user});
 					if (resp.ok) return true;
 				
 				}catch(error) {
@@ -105,7 +94,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					return false
 			},
 
-			signup: async (name, email, password) => {
+			signup: async (cell_phone, name, apellido, date_of_birth, email, password) => {
 				const requestOptions = {
 					method: 'POST',
 					headers: {
@@ -113,10 +102,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 		
 					},
 					body: JSON.stringify({
-						phone:phone,
+						cell_phone:cell_phone,
 						name:name,
 						apellido:apellido,
-						born:born,
+						date_of_birth:date_of_birth,
 						email: email,
 						password: password
 					})
@@ -124,7 +113,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				try {
 		
-					const resp = await fetch("https://dlimaf-vigilant-space-eureka-446v5wpq5xqfq5r9-3000.preview.app.github.dev/signup",requestOptions)
+					const resp = await fetch("https://dlimaf-ubiquitous-spoon-r9w6qp57j4gc55q-3000.preview.app.github.dev/signup",requestOptions)
 					if (!resp.ok) {
 						alert("There has been some error");
 						return false;
@@ -143,6 +132,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			logout: async () => {
 					setStore({ token: null });
 					localStorage.removeItem("token");
+					localStorage.removeItem("user");
 			},
 
 

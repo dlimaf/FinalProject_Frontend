@@ -1,5 +1,6 @@
 import React, {useState, useContext} from "react";
 import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import "../../styles/cuenta.css";
 import { Context } from "../store/appContext";
 import ShoppingCarLogo from "../../img/icons8-carrito-de-compras-24.png"
@@ -11,6 +12,9 @@ export const Cuenta = () => {
     const { store , actions } = useContext(Context);
     const [ pagesCuenta , setPagesCuenta ] = useState('cuenta')
     const navigate = useNavigate();
+
+    const currentUser = store.user;
+    console.log("este es el usuario",currentUser)
     
 
     const handleClickLogout = () => {
@@ -39,13 +43,31 @@ export const Cuenta = () => {
                                     <div className="d-flex justify-content-start">
                                         <div className="funcion cuenta ps-4 noactivado"><i className="fas fa-user me-2" style={{color:"#BE8123"}}></i>MI CUENTA</div>
                                     </div>
-                                    <div id="infocuenta" className="d-flex justify-content-center">
-                                                                       
-                                    </div>
-                                    <div className="d-flex align-items-end justify-content-end">
-                                        <div className="mb-5 me-5">
-                                            <button className="logout" onClick={handleClickLogout}>CERRAR SESIÓN</button>
-                                        </div>
+                                    <div id="infocuenta" className="d-flex justify-content-center position-relative">
+                                                     <div className="w-100 position-absolute m-4 ps-5 pe-5">
+                                                        <tr className="d-flex justify-content-between mb-3">
+                                                            <td>Nombre</td>
+                                                            <td>{currentUser?.name}</td>
+                                                        </tr>
+                                                        <tr className="d-flex justify-content-between mb-3">
+                                                            <td>Apellido</td>
+                                                            <td>{currentUser?.apellido}</td>
+                                                        </tr>
+                                                        <tr className="d-flex justify-content-between mb-3">
+                                                            <td>Email</td>
+                                                            <td>{currentUser?.email}</td>
+                                                        </tr>
+                                                        <tr className="d-flex justify-content-between mb-3">
+                                                            <td>Celular</td>
+                                                            <td>{currentUser?.cell_phone}</td>
+                                                        </tr>
+                                                        <tr className="d-flex justify-content-between mb-3">
+                                                            <td>Fecha de nacimiento</td>
+                                                            <td>{currentUser?.date_of_birth}</td>
+                                                        </tr>
+
+                                                    </div>                           
+                                                                                                                                                                    
                                     </div>
                                 </div>
                             ) : (pagesCuenta === "pedido") ?

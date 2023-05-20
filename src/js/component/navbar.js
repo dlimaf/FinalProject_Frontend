@@ -12,6 +12,10 @@ import { useNavigate } from "react-router-dom";
 export const Navbar = () => {
 	const { store, actions} = useContext(Context);
 	const navigate = useNavigate();
+	const [ modalOpen, setModalOpen ] = useState(true);
+	const [successfull, setSuccessfull] = useState(false);
+
+	
 
 	const handleClickLogout = () => {
         actions.logout()
@@ -100,7 +104,12 @@ export const Navbar = () => {
 			</div>
 		</nav>
 		
-		<ModalLogin/>
+		<ModalLogin
+		modalOpen={modalOpen}
+		setModalOpen={setModalOpen}
+		successfull={successfull}
+		setSuccessfull={setSuccessfull}
+		/>
 		</>
 	);
 };

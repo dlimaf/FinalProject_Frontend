@@ -8,10 +8,10 @@ import { Back } from "../component/atras";
 
 export const Signup = () => {
     const { store, actions} = useContext(Context);
-    const [ phone , setPhone ] = useState('')
+    const [ cell_phone , setCell_phone ] = useState('')
     const [name, setName] = useState('');
     const [apellido, setApellido] = useState('');
-    const [born , setBorn] = useState('');
+    const [date_of_birth , setDate_of_birth] = useState('');
     const [email,setEmail] = useState('');
     const [password,setPassword] = useState('');
 
@@ -19,7 +19,7 @@ export const Signup = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        actions.signup(phone, name, apellido, born, email, password);  
+        actions.signup(cell_phone, name, apellido, date_of_birth, email, password);  
     }
 
     return (
@@ -39,7 +39,7 @@ export const Signup = () => {
                             <label className="number_label ms-2 mb-2">Ingresa tu número de celular</label>
                             <div className="input-group">
                                 <span className="input-group-text codigo_input" id="basic-addon1">+569</span>
-                                <input type="text" className="form-control rounded-start number_input" placeholder="Últimos 8 dígitos" aria-label="number" aria-describedby="basic-addon1" value={phone} onChange={(e) => setPhone(e.target.value)}/>
+                                <input type="text" className="form-control rounded-start number_input" placeholder="Últimos 8 dígitos" aria-label="number" aria-describedby="basic-addon1" value={cell_phone} onChange={(e) => setCell_phone(e.target.value)}/>
                             </div>
                         </div>
                         <div className="mb-3">
@@ -52,7 +52,7 @@ export const Signup = () => {
                         </div>
                         <div className="mb-3">
                             <label className="number_label ms-2 mb-2">Fecha de nacimiento*</label>
-                            <input type="date" className="form-control number_input" id="start" name="trip-start" aria-label="number" aria-describedby="basic-addon1" value={born} onChange={(e )=> setBorn(e.target.value)} min="1920-01-01" max={today} />
+                            <input type="date" className="form-control number_input" id="start" name="trip-start" aria-label="number" aria-describedby="basic-addon1" value={date_of_birth} onChange={(e )=> setDate_of_birth(e.target.value)} min="1920-01-01" max={today} />
                         </div>
                         <div className="mb-3">
                             <label className="number_label ms-2 mb-2">Correo Electrónico*</label>
