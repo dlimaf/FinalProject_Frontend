@@ -52,7 +52,7 @@ export const Navbar = () => {
 				</div>
 				<div className="d-flex justify-content-end">
 					<span id="compra">
-						<Link to="/logeado">
+						<Link to={store.token ? "/logeado" : "/signup"}>
 							<i className="far fa-user fa-2x me-3" style={{color:"#723209"}}></i>
 						</Link>
 						<div className="nav-item dropdown">

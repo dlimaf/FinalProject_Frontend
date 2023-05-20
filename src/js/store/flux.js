@@ -49,6 +49,30 @@ const getState = ({ getStore, getActions, setStore }) => {
 				/**
 					fetch().then().then(data => setStore({ "foo": data.bar }))
 				*/
+				fetch("https://benbungle-probable-enigma-g97pvp5654p3vg45-3000.preview.app.github.dev/")
+				.then(resp=>resp.json())
+				.then(data=>{
+					console.log(data)
+					setStore({hamburguesas:data})
+				})
+				.catch(error=>console.log(error))
+
+				fetch("https://benbungle-probable-enigma-g97pvp5654p3vg45-3000.preview.app.github.dev/")
+				.then(resp=>resp.json())
+				.then(data=>{
+					console.log(data)
+					setStore({bebidas:data})
+				})
+				.catch(error=>console.log(error))
+				
+				fetch("https://benbungle-probable-enigma-g97pvp5654p3vg45-3000.preview.app.github.dev/")
+				.then(resp=>resp.json())
+				.then(data=>{
+					console.log(data)
+					setStore({acompañamientos:data})
+				})
+				.catch(error=>console.log(error))
+
 			},
 
 			login: async (email, password) => {
@@ -65,7 +89,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 				try {
 		
-					const resp = await fetch("https://benbungle-probable-enigma-g97pvp5654p3vg45-3000.preview.app.github.dev/login",requestOptions)
+					const resp = await fetch("https://dlimaf-vigilant-space-eureka-446v5wpq5xqfq5r9-3000.preview.app.github.dev/login",requestOptions)
 					if (!resp.ok) {
 						alert("There has been some error");
 						return false;
@@ -97,7 +121,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				try {
 		
-					const resp = await fetch("https://benbungle-probable-enigma-g97pvp5654p3vg45-3000.preview.app.github.dev/signup",requestOptions)
+					const resp = await fetch("https://dlimaf-vigilant-space-eureka-446v5wpq5xqfq5r9-3000.preview.app.github.dev/signup",requestOptions)
 					if (!resp.ok) {
 						alert("There has been some error");
 						return false;

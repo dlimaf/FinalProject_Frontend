@@ -4,7 +4,7 @@ import { Context } from "../store/appContext";
 import "../../styles/login.css"
 import logousuario from "../../img/logo_navbar-02.png"
 
-export const ModalLogin = ({isOpen}) => {
+export const ModalLogin = () => {
     const { store, actions} = useContext(Context);
     const [email,setEmail] = useState(''); 
     const [password,setPassword] = useState('');
@@ -21,7 +21,7 @@ export const ModalLogin = ({isOpen}) => {
                 <div className="modal-dialog modal-dialog-centered">
                     <div className="modal-content">
                         <div className="d-flex justify-content-end pe-3 pt-3">
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
                             <form onSubmit={handleSubmit} className="form d-flex justify-content-center">
@@ -45,20 +45,24 @@ export const ModalLogin = ({isOpen}) => {
                                     <div className="d-flex justify-content-center mt-3">
                                         <button id="buttonlogin" type="submit">CONTINUAR</button>
                                     </div>
-                                    <footer className="d-flex justify-content-center mt-4 pb-4 pt-3">
+                                </div> 
+                            </form>
+                            <footer className="d-flex justify-content-center mt-4 pb-4 pt-3">
                                         <div>
                                             <h6 className="questionlogin text-center">¿NO ESTÁS REGISTRADO?</h6>
                                             <div className="d-flex justify-content-center">
-                                                <button type="button" className="rendersignup">CREAR CUENTA</button>
+                                                <Link to="/signup">
+                                                    <button type="button" className="rendersignup">CREAR CUENTA</button>
+                                                </Link>
                                             </div>
                                         </div>
-                                    </footer>
-                                </div>
-                            </form>
+                            </footer>
+                            </div>
+                            
                         </div>
                     </div>
                 </div>
-            </div> 
+           
 
     )
 }
