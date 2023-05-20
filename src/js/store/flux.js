@@ -113,7 +113,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 		
 					},
 					body: JSON.stringify({
+						phone:phone,
 						name:name,
+						apellido:apellido,
+						born:born,
 						email: email,
 						password: password
 					})

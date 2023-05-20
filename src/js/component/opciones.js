@@ -32,14 +32,6 @@ export const Ofertas = () => {
                     id="pills-acompañamiento-tab" data-bs-toggle="pill" data-bs-target="#pills-acompañamiento" type="button" role="tab" aria-controls="pills-home" aria-selected="true"
                     >ACOMPAÑAMIENTOS</button>
                 </li>
-                <li className="nav-item" role="presentation">
-                    <button
-                    onClick={()=>setOpciones("arma")}
-                    className={"opc arma" + (opciones === "arma" ? " activo" : " noactive")}
-                    id="pills-arma-tab" data-bs-toggle="pill" data-bs-target="#pills-arma" type="button" role="tab" aria-controls="pills-home" aria-selected="true">
-                        ARMA TU BURGER
-                    </button>
-                </li>
             </ul>
             <div className="tab-content" id="pills-tabContent">
                 <div className="tab-pane fade show active" id="pills-burger" role="tabpanel" aria-labelledby="pills-burger-tab" tabIndex="0">
@@ -91,25 +83,6 @@ export const Ofertas = () => {
                                                 image={acompañamientos.image}
                                                 content={acompañamientos.content}
                                                 price={acompañamientos.price}
-                                                id={index} 
-                                                />
-                                            </div>  
-                                )
-                                })}
-                            </div>
-                    </div>
-                </div>
-                <div className="tab-pane fade" id="pills-arma" role="tabpanel" aria-labelledby="pills-arma-tab" tabIndex="0">
-                    <div className="container mt-3">
-                            <div className="row">
-                                {store.arma.map((arma,index)=>{
-                                    return (
-                                            <div className="col-md-4 mt-4" key={index}>
-                                                <Card
-                                                title={arma.title} 
-                                                image={arma.image}
-                                                content={arma.content}
-                                                price={arma.price}
                                                 id={index} 
                                                 />
                                             </div>  

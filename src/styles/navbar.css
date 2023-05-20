@@ -66,12 +66,33 @@ nav {
     letter-spacing: 0.09em;
     color: #FFFFFF;
     text-shadow: 0px 4px 4px #237018;
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
     padding-top: 5px;
     padding-bottom: 5px;
     border: none;
+    width: 200px;
 }
+#logout {
+    font-family: 'Fredoka', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 34px;
+    letter-spacing: 0.09em;
+    color: #FFFFFF;
+    text-shadow: 0px 4px 4px rgba(30, 30, 30, 0.6);
+    background: linear-gradient(90deg, #EF5B50 0%, #662923 97.91%);
+    box-shadow: 0px 4px 4px rgba(30, 30, 30, 0.6);
+    border-radius: 60px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border: none;
+    width: 200px;
+    }
+
 #compra {
     width: 120px;
     height: 80px; 

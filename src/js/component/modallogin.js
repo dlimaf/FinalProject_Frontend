@@ -1,5 +1,5 @@
-import React, {useState, useContext} from "react";
-import { Link } from "react-router-dom";
+import React, {useState, useContext, useEffect} from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/login.css"
 import logousuario from "../../img/logo_navbar-02.png"
@@ -10,21 +10,23 @@ export const ModalLogin = () => {
     const [password,setPassword] = useState('');
     
 
+
     const handleSubmit = (e) => {
         e.preventDefault()
         actions.login(email, password);
-        
     }
 
+
+ 
     return (
-            <div className="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabIndex="-1">
+            <div  className="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabIndex="-1">
                 <div className="modal-dialog modal-dialog-centered">
                     <div className="modal-content">
                         <div className="d-flex justify-content-end pe-3 pt-3">
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
-                            <form onSubmit={handleSubmit} className="form d-flex justify-content-center">
+                            <form onClick={handleSubmit} className="form d-flex justify-content-center">
                                 <div>
                                     <header className="d-flex justify-content-center mb-3">
                                         <div>
@@ -43,7 +45,7 @@ export const ModalLogin = () => {
                                         <label id="password" htmlFor="floatingPassword">Password</label>
                                     </div>
                                     <div className="d-flex justify-content-center mt-3">
-                                        <button id="buttonlogin" type="submit">CONTINUAR</button>
+                                        <button id="buttonlogin" type="submit" data-bs-dismiss="modal" aria-label="Close">CONTINUAR</button>
                                     </div>
                                 </div> 
                             </form>
@@ -62,7 +64,6 @@ export const ModalLogin = () => {
                         </div>
                     </div>
                 </div>
-           
-
     )
+
 }

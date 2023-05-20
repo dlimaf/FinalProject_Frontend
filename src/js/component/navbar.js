@@ -6,11 +6,19 @@ import "../../styles/navbar.css"
 import { ModalLogin } from "../component/modallogin";
 import { Context } from "../store/appContext";
 import { CartItem } from "./cartitem";
+import { useNavigate } from "react-router-dom";
 
 
 export const Navbar = () => {
 	const { store, actions} = useContext(Context);
-	const [ isOpen, setIsOpen ] = useState(true);
+	const navigate = useNavigate();
+
+	const handleClickLogout = () => {
+        actions.logout()
+		alert("Ha cerrado sesión satisfactoriamente")
+        navigate("/")
+	
+    }
 	return (
 		<>
 		<nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -37,10 +45,14 @@ export const Navbar = () => {
 						<li className="nav-item ms-2">
 							<div id="contacto" className="nav-link" aria-current="page">CONTACTO</div>
 						</li>
-						<li className="nav-item ms-5 me-3">
-							<button type="button" id="inicio" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" onClick={() => setIsOpen(!isOpen)}>INICIA SESIÓN</button>
+						<li className="nav-item ms-5">
+							{store.token ? (
+								<button type="button" id="logout" onClick={handleClickLogout}>CERRAR SESIÓN</button>
+							):(
+								<button type="button" id="inicio" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" onClick={() => setModalOpen(!modalOpen)}>INICIA SESIÓN</button>
+							)}
 						</li>
-						<li className="ms-5 d-flex align-items-center">
+						<li className="ms-4 d-flex align-items-center">
 							<i id="modoclaro" className="far fa-sun fa-md me-2"></i>
 							<label className="switch">
 								<input type="checkbox" className="checkbox"/>
@@ -52,9 +64,18 @@ export const Navbar = () => {
 				</div>
 				<div className="d-flex justify-content-end">
 					<span id="compra">
-						<Link to={store.token ? "/logeado" : "/signup"}>
-							<i className="far fa-user fa-2x me-3" style={{color:"#723209"}}></i>
-						</Link>
+						{store.token ?
+						(
+							<Link to="/logeado">
+								<i className="far fa-user fa-2x me-3" style={{color:"#723209"}}></i>
+							</Link>
+						)
+						:
+						(
+							<i type="button" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" onClick={() => setModalOpen(!modalOpen)} className="far fa-user fa-2x me-3" style={{color:"#723209"}}></i>
+						)
+					}
+						
 						<div className="nav-item dropdown">
 							<img className="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" src={ShoppingCarLogo} style={{width:"40px"}}/>
 							<ul className="dropdown-menu dropdown-menu-end mt-4">
@@ -79,10 +100,7 @@ export const Navbar = () => {
 			</div>
 		</nav>
 		
-		<ModalLogin
-		isOpen={isOpen}
-		setIsOpen={setIsOpen}
-		/>
+		<ModalLogin/>
 		</>
 	);
 };
