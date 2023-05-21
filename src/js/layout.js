@@ -37,6 +37,7 @@ const Layout = () => {
 			</BrowserRouter>
 			<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500&display=swap" rel="stylesheet"></link>
 			<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap" rel="stylesheet"></link>
+			<script src="sweetalert2.all.min.js"></script>
 		</div>
 	);
 };

@@ -2,7 +2,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			token: localStorage.getItem("token"),
-			user: null,
 			pedidos:[],
 			hamburguesas:[
 				{title:"CHEESE BURGER 1",image:"cheeseburger_card.png", content:"Queso Cheddar, Hamburgesa de Vacuno, doble pepinillo.",price:100.00},
@@ -40,23 +39,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 				{title:"CHEESE BURGER",image:"https://www.pizzapizza.cl/wp-content/uploads/2021/01/armatupizza-3.jpg", content:"Queso Cheddar, Hamburgesa de Vacuno, doble pepinillo.",price:"$8,990"},
 		
 			],
-			
+			users:[]
 			
 
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
 
 
 			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
-				fetch("https://dlimaf-ubiquitous-spoon-r9w6qp57j4gc55q-3000.preview.app.github.dev/users/")
+
+				fetch("https://dlimaf-ubiquitous-spoon-r9w6qp57j4gc55q-3000.preview.app.github.dev/users/<string:email>")
 				.then(resp=>resp.json())
 				.then(data=>{
 					console.log("Este es mi data",data)
-					setStore({user:data})
+					setStore({users:data})
 				})
 				.catch(error=>console.log(error))
 
@@ -65,6 +61,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			login: async (email, password) => {
+				
 				const requestOptions = {
 					method: 'POST',
 					headers: {
@@ -85,8 +82,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 					const data = await resp.json();
 					console.log("this came from the backend", data);
-					localStorage.setItem("user", JSON.stringify(data.user));
-					setStore({token:data.token, user:data.user});
+					localStorage.setItem("user", JSON.stringify(data));
+					setStore({token:data.token});
 					if (resp.ok) return true;
 				
 				}catch(error) {
@@ -131,33 +128,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			logout: async () => {
 					setStore({ token: null });
-					localStorage.removeItem("token");
 					localStorage.removeItem("user");
 			},
 
 
-			addItem:(title, price) => {
-				const store = getStore();
-				let count = 0;
-				store.pedidos.map((elem,id) => {
-					if (elem.title == title) {
-						count = 1
-					}
-				});
-				if (count == 0) {
-					setStore({
-						pedidos:[
-							...store.pedidos,
-							{
-								title: title,
-								price: price,
-							},
-						],
-					});
-				
-
-				}
-			}
 		}
 
 			

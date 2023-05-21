@@ -1,9 +1,13 @@
-import React, { useContext} from "react";
+import React, { useContext, useState} from "react";
 import "../../styles/card.css"
 import { Context } from "../store/appContext";
+import { ModalLogin } from "./modallogin";
 
 export const Card = ({ title, image, content, price}) => {
     const {store,actions} = useContext(Context) 
+
+           
+    
     return (
         <div className="card" style={{width: "18rem"}}>
             <img src={image} className="card-img-top" alt="..."/>
@@ -14,9 +18,11 @@ export const Card = ({ title, image, content, price}) => {
                         <p className="card-price col-5 text-end">{price}</p>        
                     </div>
                     <div className="row">
-                        <p className="card-text col-7">{content}</p>                            
-                        <button onClick={()=>actions.addItem(title,price)} className="agregar col-5 pt-1">Agregar</button>
-                </div>
+                        <p className="card-text col-7">{content}</p>
+                        <button className="agregar col-5 pt-1">Agregar</button>
+                        
+                        
+                    </div>
                 </div>
             </div>
         </div>

@@ -12,10 +12,6 @@ import { useNavigate } from "react-router-dom";
 export const Navbar = () => {
 	const { store, actions} = useContext(Context);
 	const navigate = useNavigate();
-	const [ modalOpen, setModalOpen ] = useState(true);
-	const [successfull, setSuccessfull] = useState(false);
-
-	
 
 	const handleClickLogout = () => {
         actions.logout()
@@ -53,7 +49,7 @@ export const Navbar = () => {
 							{store.token ? (
 								<button type="button" id="logout" onClick={handleClickLogout}>CERRAR SESIÓN</button>
 							):(
-								<button type="button" id="inicio" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" onClick={() => setModalOpen(!modalOpen)}>INICIA SESIÓN</button>
+								<button type="button" id="inicio" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" >INICIA SESIÓN</button>
 							)}
 						</li>
 						<li className="ms-4 d-flex align-items-center">
@@ -76,7 +72,7 @@ export const Navbar = () => {
 						)
 						:
 						(
-							<i type="button" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" onClick={() => setModalOpen(!modalOpen)} className="far fa-user fa-2x me-3" style={{color:"#723209"}}></i>
+							<i type="button" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" className="far fa-user fa-2x me-3" style={{color:"#723209"}}></i>
 						)
 					}
 						
@@ -104,12 +100,8 @@ export const Navbar = () => {
 			</div>
 		</nav>
 		
-		<ModalLogin
-		modalOpen={modalOpen}
-		setModalOpen={setModalOpen}
-		successfull={successfull}
-		setSuccessfull={setSuccessfull}
-		/>
+		<ModalLogin/>
+		
 		</>
 	);
 };

@@ -4,33 +4,23 @@ import { Context } from "../store/appContext";
 import "../../styles/login.css"
 import logousuario from "../../img/logo_navbar-02.png"
 
-export const ModalLogin = ({modalOpen, setModalOpen, successfull, setSuccessfull}) => {
+
+export const ModalLogin = () => {
     const { store, actions} = useContext(Context);
     const [email,setEmail] = useState(''); 
     const [password,setPassword] = useState('');
-    
-    const [modal, setModal] = useState('')
-    const [close, setClose] = useState('')
-    
 
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        const success = actions.login(email, password);
-        if (success) {
-          setSuccessfull(true);
-          setClose("close")
-          setModal("modal")
-          setEmail('')
-          setPassword('')
-        }
-    }
+        actions.login(email, password);
+        console.log("email",email)
+        console.log("password",password)
+        setEmail('')
+        setPassword('')
+        
 
-    useEffect(() => {
-        if (successfull) {
-          setModalOpen(false);
-        }
-      }, [successfull]);
+    }
  
     return (
             <div  className="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabIndex="-1">
@@ -59,7 +49,7 @@ export const ModalLogin = ({modalOpen, setModalOpen, successfull, setSuccessfull
                                         <label id="password" htmlFor="floatingPassword">Password</label>
                                     </div>
                                     <div className="d-flex justify-content-center mt-3">
-                                        <button id="buttonlogin" type="submit" data-bs-dismiss={modal} aria-label={close}>CONTINUAR</button>
+                                        <button id="button_login" type="submit">CONTINUAR</button>
                                     </div>
                                 </div> 
                             </form>
