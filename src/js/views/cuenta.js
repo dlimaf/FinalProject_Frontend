@@ -37,23 +37,15 @@ export const Cuenta = () => {
                                     </div>
                                     <div id="infocuenta" className="d-flex justify-content-center position-relative">
                                         
-                                        {Array.isArray(store.users) ? (
-                                        store.users?.map((users) =>{
-                                            
-                                            console.log("estos son los datos del usuario",users)                                                
-                                                return (
+                                    
                                                     <DatosCuenta
-                                                        name={users.name}
-                                                        apellido={users.apellido}
-                                                        email={users.email}
-                                                        cell_phone={users.cell_phone}
-                                                        date_of_birth={users.date_of_birth}                                                        
+                                                        name={store.users.name}
+                                                        apellido={store.users.apellido}
+                                                        email={store.users.email}
+                                                        cell_phone={store.users.cell_phone}
+                                                        date_of_birth={store.users.date_of_birth}                                                        
                                                     />                     
-                                                )
-                                            
-                                        }) 
-                                        ) : (
-                                            <p>No hay usuarios disponibles.</p>)}
+
                                                                                                                                                                  
                                     </div>
                                     <div className="d-flex justify-content-center mb-5">

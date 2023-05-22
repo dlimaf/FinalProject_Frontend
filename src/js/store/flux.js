@@ -1,7 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			token: localStorage.getItem("token"),
+			token: localStorage.getItem("user"),
 			pedidos:[],
 			hamburguesas:[
 				{title:"CHEESE BURGER 1",image:"cheeseburger_card.png", content:"Queso Cheddar, Hamburgesa de Vacuno, doble pepinillo.",price:100.00},
@@ -47,17 +47,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 
 			loadSomeData: () => {
-
-				fetch("https://dlimaf-ubiquitous-spoon-r9w6qp57j4gc55q-3000.preview.app.github.dev/users/<string:email>")
+				const email=JSON.parse(localStorage.getItem("emailuseractual"))
+				console.log("este es el email que estoy trayendo del locastorage",email)
+				fetch(`https://dlimaf-literate-guacamole-r9w6qp57j7gfj4r-3000.preview.app.github.dev/users/${email}`)
 				.then(resp=>resp.json())
 				.then(data=>{
 					console.log("Este es mi data",data)
 					setStore({users:data})
 				})
 				.catch(error=>console.log(error))
-
-
-
 			},
 
 			login: async (email, password) => {
@@ -75,7 +73,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 				try {
 		
-					const resp = await fetch("https://dlimaf-ubiquitous-spoon-r9w6qp57j4gc55q-3000.preview.app.github.dev/login",requestOptions)
+					const resp = await fetch("https://dlimaf-literate-guacamole-r9w6qp57j7gfj4r-3000.preview.app.github.dev/login",requestOptions)
 					if (!resp.ok) {
 						alert("There has been some error");
 						return false;
@@ -83,6 +81,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const data = await resp.json();
 					console.log("this came from the backend", data);
 					localStorage.setItem("user", JSON.stringify(data));
+					localStorage.setItem("emailuseractual", JSON.stringify(data.user.email));
 					setStore({token:data.token});
 					if (resp.ok) return true;
 				
@@ -110,7 +109,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				try {
 		
-					const resp = await fetch("https://dlimaf-ubiquitous-spoon-r9w6qp57j4gc55q-3000.preview.app.github.dev/signup",requestOptions)
+					const resp = await fetch("https://dlimaf-literate-guacamole-r9w6qp57j7gfj4r-3000.preview.app.github.dev/signup",requestOptions)
 					if (!resp.ok) {
 						alert("There has been some error");
 						return false;
@@ -129,7 +128,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			logout: async () => {
 					setStore({ token: null });
 					localStorage.removeItem("user");
+					localStorage.removeItem("emailuseractual");
 			},
+
 
 
 		}
