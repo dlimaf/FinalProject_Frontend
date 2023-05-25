@@ -1,12 +1,13 @@
 import React, { useState, useContext} from "react";
 import { Link } from "react-router-dom";
-import Logo from "../../img/logo.jpeg"
-import ShoppingCarLogo from "../../img/icons8-carrito-de-compras-24.png"
-import "../../styles/navbar.css"
+import Logo from "../../img/logo.jpeg";
+import ShoppingCarLogo from "../../img/icons8-carrito-de-compras-24.png";
+import "../../styles/navbar.css";
 import { ModalLogin } from "../component/modallogin";
 import { Context } from "../store/appContext";
 import { CartItem } from "./cartitem";
 import { useNavigate } from "react-router-dom";
+import swal from "sweetalert";
 
 
 export const Navbar = () => {
@@ -15,12 +16,12 @@ export const Navbar = () => {
 
 	const handleClickLogout = () => {
         actions.logout()
-		alert("Ha cerrado sesión satisfactoriamente")
+		swal("¡Bien!", "Has cerrado sesión correctamente :)", "success");
         navigate("/")
 	
     }
 	return (
-		<>
+		<div className="position-relative">
 		<nav className="navbar navbar-expand-lg bg-body-tertiary">
 			<div className="container-fluid">
 				<Link to="/">
@@ -49,7 +50,7 @@ export const Navbar = () => {
 							{store.token ? (
 								<button type="button" id="logout" onClick={handleClickLogout}>CERRAR SESIÓN</button>
 							):(
-								<button type="button" id="inicio" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" >INICIA SESIÓN</button>
+								<button type="button" id="inicio"  onClick={() =>actions.setOpenModal(true)}>INICIA SESIÓN</button>
 							)}
 						</li>
 						<li className="ms-4 d-flex align-items-center">
@@ -64,7 +65,7 @@ export const Navbar = () => {
 				</div>
 				<div className="d-flex justify-content-end">
 					<span id="compra">
-						{store.token ?
+						{store.token  ?
 						(
 							<Link to="/logeado">
 								<i className="far fa-user fa-2x me-3" style={{color:"#723209"}}></i>
@@ -72,7 +73,7 @@ export const Navbar = () => {
 						)
 						:
 						(
-							<i type="button" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" className="far fa-user fa-2x me-3" style={{color:"#723209"}}></i>
+							<i type="button" onClick={() =>actions.setOpenModal(true)} data-bs-target="#exampleModalToggle" data-bs-toggle="modal" className="far fa-user fa-2x me-3" style={{color:"#723209"}}></i>
 						)
 					}
 						
@@ -99,9 +100,9 @@ export const Navbar = () => {
 				
 			</div>
 		</nav>
-		
-		<ModalLogin/>
-		
-		</>
+			{store.openModal &&
+				<ModalLogin />
+			}
+		</div>
 	);
 };

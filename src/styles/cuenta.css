@@ -76,3 +76,15 @@ td {
     border: 4px solid #BE8123;
     border-radius: 60px;
 }
+.inputeditar {
+    width: 150px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 23px;
+    color: #878787;
+    background: #EEEEEE;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 35px;
+    text-align: center;
+}

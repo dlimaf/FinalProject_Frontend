@@ -1,5 +1,5 @@
 import React, {useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../../styles/signup.css";
 import { Context } from "../store/appContext";
 import logousuario from "../../img/logo_navbar-02.png"
@@ -14,12 +14,21 @@ export const Signup = () => {
     const [date_of_birth , setDate_of_birth] = useState('');
     const [email,setEmail] = useState('');
     const [password,setPassword] = useState('');
+    const navigate = useNavigate()
 
     const today = Date.now()
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        actions.signup(cell_phone, name, apellido, date_of_birth, email, password);  
+        actions.signup(cell_phone, name, apellido, date_of_birth, email, password); 
+        swal("¡Bien!", "Su usuario ha sido creado correctamente :)", "success"); 
+        navigate('/')
+        setCell_phone('');
+        setApellido('')
+        setName('')
+        setDate_of_birth('')
+        setPassword('')
+        setEmail('')
     }
 
     return (

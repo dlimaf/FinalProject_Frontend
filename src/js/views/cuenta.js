@@ -13,6 +13,7 @@ export const Cuenta = () => {
     const { store , actions } = useContext(Context);
     const [ pagesCuenta , setPagesCuenta ] = useState('cuenta')
     const navigate = useNavigate();
+    const [edit , setEdit ] = useState(false);
     
     return (
         <div className="fondocuenta">
@@ -38,18 +39,13 @@ export const Cuenta = () => {
                                     <div id="infocuenta" className="d-flex justify-content-center position-relative">
                                         
                                     
-                                                    <DatosCuenta
-                                                        name={store.users.name}
-                                                        apellido={store.users.apellido}
-                                                        email={store.users.email}
-                                                        cell_phone={store.users.cell_phone}
-                                                        date_of_birth={store.users.date_of_birth}                                                        
+                                                    <DatosCuenta                                              
                                                     />                     
 
                                                                                                                                                                  
                                     </div>
                                     <div className="d-flex justify-content-center mb-5">
-                                        <button className="modificar">MODIFICAR DATOS</button>
+                                        <button className="modificar" onClick={() => actions.setEdit(true)}>MODIFICAR DATOS</button>
                                     </div>
                                 </div>
                             ) : (pagesCuenta === "pedido") ?

@@ -1,3 +1,5 @@
+
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -39,23 +41,26 @@ const getState = ({ getStore, getActions, setStore }) => {
 				{title:"CHEESE BURGER",image:"https://www.pizzapizza.cl/wp-content/uploads/2021/01/armatupizza-3.jpg", content:"Queso Cheddar, Hamburgesa de Vacuno, doble pepinillo.",price:"$8,990"},
 		
 			],
-			users:[]
+			users:[],
+			openModal:false,
+			edit:false
+
 			
 
 		},
 		actions: {
 
 
-			loadSomeData: () => {
-				const email=JSON.parse(localStorage.getItem("emailuseractual"))
-				console.log("este es el email que estoy trayendo del locastorage",email)
-				fetch(`https://dlimaf-literate-guacamole-r9w6qp57j7gfj4r-3000.preview.app.github.dev/users/${email}`)
-				.then(resp=>resp.json())
-				.then(data=>{
-					console.log("Este es mi data",data)
-					setStore({users:data})
-				})
-				.catch(error=>console.log(error))
+
+
+			setOpenModal:(data)=>{
+				const store = getStore();
+				setStore({openModal: data})
+			},
+
+			setEdit:(data)=>{
+				const store = getStore();
+				setStore({edit: data})
 			},
 
 			login: async (email, password) => {
@@ -75,18 +80,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 		
 					const resp = await fetch("https://dlimaf-literate-guacamole-r9w6qp57j7gfj4r-3000.preview.app.github.dev/login",requestOptions)
 					if (!resp.ok) {
-						alert("There has been some error");
+						swal(data, { icon: "error" });
 						return false;
 					}
 					const data = await resp.json();
 					console.log("this came from the backend", data);
-					localStorage.setItem("user", JSON.stringify(data));
-					localStorage.setItem("emailuseractual", JSON.stringify(data.user.email));
+					localStorage.setItem("user", JSON.stringify(data.token));
 					setStore({token:data.token});
-					if (resp.ok) return true;
+					if (resp.ok) 
+					return 
+						true;
+						swal("¡Bien!", "Has hecho clic en el botón :)", "success")						
+					
 				
 				}catch(error) {
-					console.log("There has been an error login in")}
+					console.log("There has been an error login in")
+				
+				}
 					return false
 			},
 
@@ -116,12 +126,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 					const data = await resp.json();
 					console.log("this came from the backend", data);
-					localStorage.setItem("user", JSON.stringify(data));
-					setStore({token:data.token});
 					if (resp.ok) return true;
 								
 				} catch(error) {
 					console.log("There has been an error sign up")}
+					swal(data, { icon: "error" });
 					return false
 				 },
 

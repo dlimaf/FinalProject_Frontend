@@ -19,20 +19,30 @@ export const ModalLogin = () => {
         setEmail('')
         setPassword('')
         
+        setTimeout(() => {
+            if (store.token) {
+              actions.setOpenModal(false);
+              swal("¡Bien!", "Ha iniciado sesión correctamente :)", "success"); 
+              
+            } else {
+                actions.setOpenModal(true);
+                swal("¡Error!", "Usuario o contraseña errónea :(", "error"); 
+            }
+          }, 1500);
+
 
     }
  
     return (
-            <div  className="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabIndex="-1">
-                <div className="modal-dialog modal-dialog-centered">
+            <div className="modal">
                     <div className="modal-content">
                         <div className="d-flex justify-content-end pe-3 pt-3">
-                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={() =>actions.setOpenModal(false)}></button>
                         </div>
                         <div className="modal-body">
                             <form onSubmit={handleSubmit} className="form d-flex justify-content-center">
                                 <div>
-                                    <header className="d-flex justify-content-center mb-3">
+                                    <header className="d-flex justify-content-center">
                                         <div>
                                             <div className="d-flex justify-content-center mb-2">
                                                 <img src={logousuario} style={{width:"100px", height:"auto"}}></img>
@@ -53,12 +63,12 @@ export const ModalLogin = () => {
                                     </div>
                                 </div> 
                             </form>
-                            <footer className="d-flex justify-content-center mt-4 pb-4 pt-3">
+                            <footer className="d-flex justify-content-center mt-4 pt-3">
                                         <div>
                                             <h6 className="questionlogin text-center">¿NO ESTÁS REGISTRADO?</h6>
                                             <div className="d-flex justify-content-center">
                                                 <Link to="/signup">
-                                                    <button type="button" className="rendersignup">CREAR CUENTA</button>
+                                                    <button type="button" className="rendersignup" onClick={() => actions.setOpenModal(false)}>CREAR CUENTA</button>
                                                 </Link>
                                             </div>
                                         </div>
@@ -67,7 +77,6 @@ export const ModalLogin = () => {
                             
                         </div>
                     </div>
-                </div>
     )
 
 }
