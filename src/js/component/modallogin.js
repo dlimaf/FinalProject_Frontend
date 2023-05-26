@@ -3,15 +3,16 @@ import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/login.css"
 import logousuario from "../../img/logo_navbar-02.png"
-
+import { Loading } from "./loading";
 
 export const ModalLogin = () => {
+    
     const { store, actions} = useContext(Context);
     const [email,setEmail] = useState(''); 
     const [password,setPassword] = useState('');
 
-
     const handleSubmit = (e) => {
+        actions.setLoading(true)
         e.preventDefault()
         actions.login(email, password);
         console.log("email",email)
@@ -22,6 +23,7 @@ export const ModalLogin = () => {
         setTimeout(() => {
             if (store.token) {
               actions.setOpenModal(false);
+              actions.setLoading(false)
               swal("¡Bien!", "Ha iniciado sesión correctamente :)", "success"); 
               
             } else {
@@ -59,7 +61,9 @@ export const ModalLogin = () => {
                                         <label id="password" htmlFor="floatingPassword">Password</label>
                                     </div>
                                     <div className="d-flex justify-content-center mt-3">
+                                        
                                         <button id="button_login" type="submit">CONTINUAR</button>
+                                        
                                     </div>
                                 </div> 
                             </form>

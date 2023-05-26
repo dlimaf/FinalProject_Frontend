@@ -43,7 +43,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			],
 			users:[],
 			openModal:false,
-			edit:false
+			edit:false,
+			loading:false
 
 			
 
@@ -61,6 +62,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 			setEdit:(data)=>{
 				const store = getStore();
 				setStore({edit: data})
+			},
+
+			setLoading:(data)=>{
+				const store = getStore();
+				setStore({loading: data})
 			},
 
 			login: async (email, password) => {

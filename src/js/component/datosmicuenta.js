@@ -9,6 +9,8 @@ export const DatosCuenta = () => {
 
     const [ userData , setUserData ] = useState(null)
 
+    const [ guardar, setGuardar] = useState(false)
+
 
     console.log("userData",userData)
 
@@ -36,7 +38,7 @@ export const DatosCuenta = () => {
     useEffect(() => {
             informacionUsuario()
         
-    },[])
+    },[guardar])
 
    
 
@@ -65,6 +67,8 @@ export const DatosCuenta = () => {
         const [new_Cell_phone, setNew_Cell_phone] = useState(user?.cell_phone || "")
         const [new_Date_of_birth, setNew_Date_of_birth] = useState(user?.date_of_birth || "")
 
+        
+
 
         function handleClick() {
             const updatedUserData = actualizarDatos({
@@ -76,6 +80,7 @@ export const DatosCuenta = () => {
           
             actualizarInformacionUsuario(updatedUserData);
             actions.setEdit(false);
+            setGuardar(!guardar)
           }
 
         const actualizarInformacionUsuario = () => {

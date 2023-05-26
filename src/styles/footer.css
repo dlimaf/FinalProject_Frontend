@@ -1,5 +1,20 @@
-.contacto {
-    font-family: 'Fredoka';
+.footer {
+    max-width: 100%;
+    padding: 0 20px;
+    }
+    
+    .footer .d-flex {
+    flex-wrap: wrap;
+    }
+    
+    .footer .d-flex img {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+    }
+    
+    .contacto {
+    font-family: 'Fredoka', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 15px;
@@ -7,9 +22,10 @@
     letter-spacing: 0.05em;
     color: #FFFFFF;
     text-shadow: 0px 4px 4px rgba(30, 30, 30, 0.6);
-}
-.buttonemail { 
-    font-family: 'Fredoka';
+    }
+    
+    .buttonemail {
+    font-family: 'Fredoka', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 15px;
@@ -21,9 +37,10 @@
     box-shadow: 0px 4px 4px rgba(30, 30, 30, 0.6);
     border-radius: 60px;
     border: none;
-}
-.buttonwhatsapp {
-    font-family: 'Fredoka';
+    }
+    
+    .buttonwhatsapp {
+    font-family: 'Fredoka', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 15px;
@@ -35,5 +52,4 @@
     box-shadow: 0px 4px 7px rgba(30, 30, 30, 0.6);
     border-radius: 60px;
     border: none;
-
-}
+    }
