@@ -14,9 +14,9 @@
     padding-top: 5px;
     padding-bottom: 5px;
     width: 350px;
-
-}
-.rendersignup {
+    }
+    
+    .rendersignup {
     background: #FFFFFF;
     border: 4px solid #BE8123;
     border-radius: 60px;
@@ -27,34 +27,38 @@
     font-size: 18px;
     line-height: 27px;
     letter-spacing: 0.05em;
-
     color: #BE8123;
-}
-#floatingInput {
-    width: 350px;
-    background: #EEEEEE;
-    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
-    border-radius: 60px;
-}
-#floatingPassword {
-    width: 350px;
-    background: #EEEEEE;
-    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
-    border-radius: 60px;
-}
-#exampleModalToggle {
-    border-radius: 60px;
+    }
     
-}
-#password, #email {
+    #floatingInput {
+    width: 350px;
+    background: #EEEEEE;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 60px;
+    }
+    
+    #floatingPassword {
+    width: 350px;
+    background: #EEEEEE;
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 60px;
+    }
+    
+    #exampleModalToggle {
+    border-radius: 60px;
+    }
+    
+    #password,
+    #email {
     font-family: 'Ubuntu';
     font-style: normal;
     font-weight: 400;
     font-size: 15px;
     line-height: 23px;
     color: #878787;
-}
-.questionlogin {
+    }
+    
+    .questionlogin {
     font-family: 'Fredoka';
     font-style: normal;
     font-weight: 700;
@@ -62,25 +66,54 @@
     line-height: 24px;
     letter-spacing: 0.05em;
     color: #381A07;
-}
-.modal {
+    }
+    
+    .modal {
     position: fixed;
-    top: 10%;
-    left: 33%;
-    width: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 400px;
     height: auto;
-    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semitransparente */
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
     background: #FFFFFF;
     box-shadow: 0px 4px 10px 4px rgba(0, 0, 0, 0.5);
     border-radius: 35px;
-  }
-  
-  .modal-content {
+    }
+    
+    .modal-content {
     background-color: #fff;
     padding: 10px;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  }
+    }
+    
+    @media (max-width: 576px) {
+    #button_login {
+    width: 100%;
+    }
+    
+    #floatingInput,
+    #floatingPassword {
+    width: 100%;
+    }
+    
+    .rendersignup {
+    width: 100%;
+    }
+    
+    .modal {
+    width: 90%;
+    max-width: 350px;
+    }
+    }
+    
+    @media (min-width: 577px) and (max-width: 992px) {
+    }
+    
+    @media (min-width: 993px) {
+    }
