@@ -160,3 +160,27 @@ nav {
 #modoclaro {
     color: #D9D9D9;
 }
+
+.dropdown-menu {
+    position: absolute;
+    width: 300px;
+    height: relative;
+    background: #1E1E1E;
+    mix-blend-mode: multiply;
+    opacity: 0.9;
+    border-radius: 40px;
+    overflow: auto;
+}
+
+.dropdown-item{
+    position: absolute;
+    width: 202px;
+    height: 100px;
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 25px;
+    line-height: 32px;
+    letter-spacing: 0.05em;
+    color: #FFFFFF;
+}

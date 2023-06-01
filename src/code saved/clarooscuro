@@ -1,0 +1,8 @@
+<li className="ms-4 d-flex align-items-center">
+								<i id="modoclaro" className="far fa-sun fa-md me-2"></i>
+								<label className="switch">
+									<input type="checkbox" className="checkbox" />
+									<div className="slider"></div>
+								</label>
+								<i id="modonocturno" className="far fa-moon fa-md ms-2"></i>
+							</li>
