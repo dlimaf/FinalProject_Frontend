@@ -4,7 +4,7 @@ import { Context } from "../store/appContext";
 import { ModalLogin } from "./modallogin";
 import swal from "sweetalert";
 
-export const Card = ({ title, image, content, price}) => {
+export const Card = ({ name, image, description, price}) => {
     const {store,actions} = useContext(Context) 
     const [response1, setResponse1] = useState(null);
     const [response2, setResponse2] = useState(null);
@@ -12,7 +12,7 @@ export const Card = ({ title, image, content, price}) => {
   
 
     const handleProcesarPago = () => {
-        fetch('https://dlimaf-super-fortnight-9vw5rjg6rwjcxrr5-3000.preview.app.github.dev/procesar_pago', {
+        fetch('https://3000-benbungle-ecommerceback-gjc60gx0upg.ws-us98.gitpod.io/procesar_pago', {
           method: 'POST'
         })
         .then(response => {
@@ -50,7 +50,7 @@ export const Card = ({ title, image, content, price}) => {
           console.log("tokenKey",tokenKey)
           setInterval(() => {
             var myHeaders = new Headers();
-            myHeaders.append("Authorization", "Bearer ");
+            myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJidXNpbmVzc01hY2hJZCI6IjI1NDU4MDM5LWYwM2UtNDE1OS04Y2IxLTAzYzA5MzMwMmEzYyIsImJ1c2luZXNzU2VjcmV0SWQiOiJmM2MxMmFhOS04NWI5LTRmYzMtYjA2NS1hYzQwZTYwYmMwMzEiLCJzY29wZXMiOlsicGF5bWVudHMuY3JlYXRlIiwicGF5bWVudHMuZ2V0Il0sImlhdCI6MTY4NTU5MzYwNn0.I3jyKytAIb0m0E_2MeakWtf8bVbkNNOHbs3G6Nh6nf8");
 
             var requestOptions = {
               method: 'GET',
@@ -75,12 +75,12 @@ export const Card = ({ title, image, content, price}) => {
             <div className="card-body">
                 <div>
                     <div className="row">
-                        <h5 className="card-title col-7">{title}</h5>
-                        <p className="card-price col-5 text-end">{price}</p>        
+                        <h5 className="card-title col-8">{name}</h5>
+                        <p className="card-price col-4 text-end">{price}</p>        
                     </div>
                     <div className="row">
-                        <p className="card-text col-7">{content}</p>
-                        <button className="agregar col-5 pt-1" onClick={handleProcesarPago}>Agregar</button>
+                        <p className="card-text col-8">{description}</p>
+                        <button className="agregar col-4 pt-1" onClick={handleProcesarPago}>Agregar</button>
                     </div>
                 </div>
             </div>

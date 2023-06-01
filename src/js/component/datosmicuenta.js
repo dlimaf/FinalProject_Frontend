@@ -24,7 +24,7 @@ export const DatosCuenta = () => {
             method: "GET",
             headers: myHeaders
         };
-        fetch("https://dlimaf-literate-guacamole-r9w6qp57j7gfj4r-3000.preview.app.github.dev/privada",requestOptions)
+        fetch("https://3000-benbungle-ecommerceback-gjc60gx0upg.ws-us98.gitpod.io/privada",requestOptions)
             .then((response) => response.json())
             .then((data) => {
                 setUserData(data)
@@ -72,10 +72,10 @@ export const DatosCuenta = () => {
 
         function handleClick() {
             const updatedUserData = actualizarDatos({
-              name: new_Name,
-             // apellido: new_Apellido,
-              cell_phone: new_Cell_phone,
-              date_of_birth: new_Date_of_birth,
+                name: new_Name,
+                apellido: new_Apellido,
+                cell_phone: new_Cell_phone,
+                date_of_birth: new_Date_of_birth,
             });
           
             actualizarInformacionUsuario(updatedUserData);
@@ -91,7 +91,7 @@ export const DatosCuenta = () => {
             
             var raw = JSON.stringify({
                 name: new_Name,
-                // apellido: new_Apellido,
+                apellido: new_Apellido,
                  cell_phone: new_Cell_phone,
                  date_of_birth: new_Date_of_birth,
             });
@@ -103,7 +103,7 @@ export const DatosCuenta = () => {
               redirect: 'follow'
             };
             
-            fetch("https://dlimaf-literate-guacamole-r9w6qp57j7gfj4r-3000.preview.app.github.dev/privada", requestOptions)
+            fetch("https://3000-benbungle-ecommerceback-gjc60gx0upg.ws-us98.gitpod.io/privada", requestOptions)
               .then(response => response.text())
               .then(data => {
                 console.log(data)})

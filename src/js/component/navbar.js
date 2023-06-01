@@ -38,9 +38,6 @@ export const Navbar = () => {
 							<div id="menu" className="nav-link active" aria-current="page">MENU</div>
 						</li>
 						<li className="nav-item ms-2">
-							<div id="delivery" className="nav-link" aria-current="page">DELIVERY</div>
-						</li>
-						<li className="nav-item ms-2">
 							<div id="pedidos" className="nav-link" aria-current="page">PEDIDOS</div>
 						</li>
 						<li className="nav-item ms-2">
@@ -53,14 +50,7 @@ export const Navbar = () => {
 								<button type="button" id="inicio"  onClick={() =>actions.setOpenModal(true)}>INICIA SESIÓN</button>
 							)}
 						</li>
-						<li className="ms-4 d-flex align-items-center">
-							<i id="modoclaro" className="far fa-sun fa-md me-2"></i>
-							<label className="switch">
-								<input type="checkbox" className="checkbox"/>
-								<div className="slider"></div>
-							</label>
-							<i id="modonocturno" className="far fa-moon fa-md ms-2"></i>
-						</li>
+						
 					</ul>
 				</div>
 				<div className="d-flex justify-content-end">

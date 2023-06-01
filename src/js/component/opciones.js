@@ -8,6 +8,8 @@ export const Ofertas = () => {
     const { store, actiones} = useContext(Context);    
     const [ opciones, setOpciones ] = useState("burgers")
 
+   
+
     return (
         <div className="ms-5 mt-4">
             <ul className="nav nav-pills" id="pills-tab" role="tablist">
@@ -41,9 +43,9 @@ export const Ofertas = () => {
                                 return (
                                         <div className="col-md-4 mt-4" key={index}>
                                             <Card
-                                            title={hamburguesas.title} 
-                                            image={hamburguesas.image}
-                                            content={hamburguesas.content}
+                                            name={hamburguesas.name} 
+                                            image={"https://img.freepik.com/foto-gratis/vista-frontal-hamburguesa-stand_141793-15542.jpg"}
+                                            description={hamburguesas.description}
                                             price={hamburguesas.price}
                                             id={index} 
                                             />
@@ -60,9 +62,9 @@ export const Ofertas = () => {
                                     return (
                                             <div className="col-md-4 mt-4" key={index}>
                                                 <Card
-                                                title={bebidas.title} 
-                                                image={bebidas.image}
-                                                content={bebidas.content}
+                                                name={bebidas.name} 
+                                                image={"https://www.eluniverso.com/resizer/XDCSRrWf-mQVhi9fw2igV2hzPg8=/1005x670/smart/filters:quality(70)/cloudfront-us-east-1.images.arcpublishing.com/eluniverso/6O3SHHDC55GTHHHGY4HAWTVD5A.jpg"}
+                                                description={bebidas.description}
                                                 price={bebidas.price}
                                                 id={index} 
                                                 />
@@ -79,9 +81,9 @@ export const Ofertas = () => {
                                     return (
                                             <div className="col-md-4 mt-4" key={index}>
                                                 <Card
-                                                title={acompañamientos.title} 
-                                                image={acompañamientos.image}
-                                                content={acompañamientos.content}
+                                                name={acompañamientos.name} 
+                                                image={"https://www.7diasdesabor.com/wp-content/uploads/2022/10/PAPAS-SUPREMAS-WEB.jpg"}
+                                                description={acompañamientos.description}
                                                 price={acompañamientos.price}
                                                 id={index} 
                                                 />

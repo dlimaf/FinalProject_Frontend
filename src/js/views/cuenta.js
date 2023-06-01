@@ -25,9 +25,6 @@ export const Cuenta = () => {
                     <div 
                     onClick={() => setPagesCuenta("pedido")}
                     className={"funcion pedido ps-4 pb-3" + (pagesCuenta === "pedido" ? " activado" : " noactivado")}><i className="fas fa-shopping-cart me-2" style={{color:"#BE8123"}}></i>MIS PEDIDOS</div>
-                    <div 
-                    onClick={() => setPagesCuenta("pago")}
-                    className={"funcion pago ps-4" + (pagesCuenta === "pago" ? " activado" : " noactivado")}><i className="fas fa-credit-card me-2" style={{color:"#BE8123"}}></i>MÉTODOS DE PAGO</div>
                 </div>
                 <div className="col-8 pt-5">
                     <div >
@@ -48,13 +45,9 @@ export const Cuenta = () => {
                                         <button className="modificar" onClick={() => actions.setEdit(true)}>MODIFICAR DATOS</button>
                                     </div>
                                 </div>
-                            ) : (pagesCuenta === "pedido") ?
+                            ) : 
                             (
                                 <div className="funcion pedido ps-4 pb-3 noactivado"><i className="fas fa-shopping-cart me-2" style={{color:"#BE8123"}}></i>MIS PEDIDOS</div>
-                            ) :
-                            (
-                                <div className="funcion pago ps-4 noactivado"><i className="fas fa-credit-card me-2" style={{color:"#BE8123"}}></i>MÉTODOS DE PAGO</div>
-
                             )}
                     </div>
 
