@@ -84,7 +84,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 				try {
 		
-					const resp = await fetch("https://dlimaf-literate-guacamole-r9w6qp57j7gfj4r-3000.preview.app.github.dev/login",requestOptions)
+					const resp = await fetch("https://3000-benbungle-ecommerceback-gjc60gx0upg.ws-us98.gitpod.io/login",requestOptions)
 					if (!resp.ok) {
 						swal(data, { icon: "error" });
 						return false;

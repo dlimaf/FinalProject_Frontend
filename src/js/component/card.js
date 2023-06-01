@@ -2,10 +2,14 @@ import React, { useContext, useEffect, useState} from "react";
 import "../../styles/card.css"
 import { Context } from "../store/appContext";
 import { ModalLogin } from "./modallogin";
+import swal from "sweetalert";
 
 export const Card = ({ title, image, content, price}) => {
     const {store,actions} = useContext(Context) 
-    const [response, setResponse] = useState(null);
+    const [response1, setResponse1] = useState(null);
+    const [response2, setResponse2] = useState(null);
+    const [modal_key, setModal_key] = useState(false)
+  
 
     const handleProcesarPago = () => {
         fetch('https://dlimaf-super-fortnight-9vw5rjg6rwjcxrr5-3000.preview.app.github.dev/procesar_pago', {
@@ -14,43 +18,59 @@ export const Card = ({ title, image, content, price}) => {
         .then(response => {
           if (response.ok) {
             return response.json();
+            
           } else {
             throw new Error('Error en la solicitud: ' + response.status);
           }
         })
         .then(data => {
-          setResponse(data);
-          console.log(data);
+          setResponse1(data);
+          setResponse2(data.token_key)
+          console.log("token_key",response2);
           // Aquí puedes manipular los datos recibidos y actualizar tu interfaz de usuario
         })
         .catch(error => {
           console.log(error);
         });
+        setTimeout(()=>{
+          setModal_key(true)
+          setTimeout(()=>{
+            setModal_key(false)
+            swal("Su tiempo de pago ha expirado")
+          },35000)
+
+        },1500)
+        
       };   
       
-      
+
     useEffect(()=>{
-        if (response.image_base_64) {
-            setInterval(() => {
-                var myHeaders = new Headers();
-                myHeaders.append("Authorization", "Bearer");
+        if (response1?.token_key) {
+          const tokenKey = response1.token_key
+          console.log("tokenKey",tokenKey)
+          setInterval(() => {
+            var myHeaders = new Headers();
+            myHeaders.append("Authorization", "Bearer ");
 
-                var requestOptions = {
-                    method: 'GET',
-                    headers: myHeaders,
-                    redirect: 'follow'
-                };
+            var requestOptions = {
+              method: 'GET',
+              headers: myHeaders,
+              redirect: 'follow'
+            };
 
-                fetch("https://biz-sandbox.soymach.com/payments/", requestOptions)
-                    .then(response => response.json())
-                    .then(result => console.log(result))
-                    .catch(error => console.log('error', error));
-            }, 5000)
+            fetch(`https://biz-sandbox.soymach.com/payments/${tokenKey}`, requestOptions)
+              .then(response => response.json())
+              .then(data => console.log(data))
+              .catch(error => console.log('error', error));
+
+
+          }, 5000)
         }
-    },[response])
+    },[response1])
     
     return (
-        <div className="card" style={{width: "18rem"}}>
+      <>
+        <div className="card" style={{width: "18rem"}} onClick={()=>setModal_key(false)}>
             <img src={image} className="card-img-top" alt="..."/>
             <div className="card-body">
                 <div>
@@ -64,7 +84,12 @@ export const Card = ({ title, image, content, price}) => {
                     </div>
                 </div>
             </div>
-            <img src={response?.image_base_64}/>
         </div>
+        {modal_key &&
+        <div>
+          <img id="modal_key" src={response1?.mach_data.image_base_64}/>
+        </div>
+        }
+        </>
     );
   };
