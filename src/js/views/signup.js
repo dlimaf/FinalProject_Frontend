@@ -4,6 +4,7 @@ import "../../styles/signup.css";
 import { Context } from "../store/appContext";
 import logousuario from "../../img/logo_navbar-02.png"
 import { Back } from "../component/atras";
+import { ModalConfirmarRegistro } from "../component/modalconfirregistro";
 
 
 export const Signup = () => {
@@ -104,9 +105,8 @@ export const Signup = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        actions.signup(cell_phone, name, apellido, date_of_birth, email, password); 
-        swal("¡Bien!", "Su usuario ha sido creado correctamente :)", "success"); 
-        navigate('/')
+        actions.signup(cell_phone, name, apellido, date_of_birth, email, password);        
+        actions.setModalConfRegistro(true)
         setCell_phone('');
         setApellido('')
         setName('')
@@ -116,6 +116,7 @@ export const Signup = () => {
     }
 
     return (
+        <>
         <div className="signup pb-5">
             <div className="container pt-5">
                 <div className="d-flex justify-content-center">
@@ -173,5 +174,9 @@ export const Signup = () => {
                 <Back/>
             </div> 
         </div>
+        {store.modalConfRegistro && 
+            <ModalConfirmarRegistro/>
+        }
+        </>
     )
 }

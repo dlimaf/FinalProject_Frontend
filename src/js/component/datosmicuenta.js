@@ -11,6 +11,8 @@ export const DatosCuenta = () => {
 
     const [ guardar, setGuardar] = useState(false)
 
+    const url = "https://dlimaf-shiny-engine-w6x5pgq977r2ggrp-3000.preview.app.github.dev/"
+
 
     console.log("userData",userData)
 
@@ -24,7 +26,7 @@ export const DatosCuenta = () => {
             method: "GET",
             headers: myHeaders
         };
-        fetch("https://3000-benbungle-ecommerceback-gjc60gx0upg.ws-us98.gitpod.io/privada",requestOptions)
+        fetch(`${url}privada`,requestOptions)
             .then((response) => response.json())
             .then((data) => {
                 setUserData(data)
@@ -81,6 +83,7 @@ export const DatosCuenta = () => {
             actualizarInformacionUsuario(updatedUserData);
             actions.setEdit(false);
             setGuardar(!guardar)
+            
           }
 
         const actualizarInformacionUsuario = () => {
@@ -103,18 +106,15 @@ export const DatosCuenta = () => {
               redirect: 'follow'
             };
             
-            fetch("https://3000-benbungle-ecommerceback-gjc60gx0upg.ws-us98.gitpod.io/privada", requestOptions)
+            fetch(`${url}privada`, requestOptions)
               .then(response => response.text())
               .then(data => {
+                setGuardar(false)
                 console.log(data)})
               .catch(error => console.log('error', error));
           };
     
-        useEffect(() => {
-            if (store.edit) {
-                actualizarInformacionUsuario();
-            }
-        }, [actualizarDatos, store.edit]);
+        
 
         return (
 

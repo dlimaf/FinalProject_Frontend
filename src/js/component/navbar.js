@@ -1,25 +1,25 @@
-import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useContext, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "../../img/logo.png";
 import ShoppingCarLogo from "../../img/icons8-carrito-de-compras-24.png";
 import "../../styles/navbar.css";
 import { ModalLogin } from "../component/modallogin";
 import { Context } from "../store/appContext";
 import { CartItem } from "./cartitem";
-import { useNavigate } from "react-router-dom";
+import "../../styles/notification.css";
 import swal from "sweetalert";
+import { ModalCerrarSession } from "./modalcerrarsesion";
 
 
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
-	const navigate = useNavigate();
+	const navigate = useNavigate()
+	
 
-	const handleClickLogout = () => {
-		actions.logout()
-		swal("¡Bien!", "Has cerrado sesión correctamente :)", "success");
-		navigate("/")
+    const [response2, setResponse2] = useState(null);
 
-	}
+	const url = "https://dlimaf-shiny-engine-w6x5pgq977r2ggrp-3000.preview.app.github.dev/"
+	
 	const calculateTotal = (pedidos) => {
 		let total = 0;
 		pedidos.forEach((pedido) => {
@@ -28,10 +28,62 @@ export const Navbar = () => {
 		return total;
 	};
 
-	const handlePayment = () => {
-		const totalAmount = calculateTotal(store.pedidos);
-		console.log("Total amount:", totalAmount);
-	};
+	const handleProcesarPago = () => {
+		const total = calculateTotal(store.pedidos)
+		console.log("preciototal", total)
+        fetch(`${url}procesar_pago/${total}`, {
+          method: 'POST',
+        })
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+            
+          } else {
+            throw new Error('Error en la solicitud: ' + response.status);
+          }
+        })
+        .then(data => {
+          actions.setResponse1(data);
+          setResponse2(data.token_key)
+		  console.log("data qr", data)
+          console.log("token_key",response2);
+          // Aquí puedes manipular los datos recibidos y actualizar tu interfaz de usuario
+		  let myHeaders = new Headers();
+		  myHeaders.append(
+			  "Authorization",
+			  `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJidXNpbmVzc01hY2hJZCI6IjI1NDU4MDM5LWYwM2UtNDE1OS04Y2IxLTAzYzA5MzMwMmEzYyIsImJ1c2luZXNzU2VjcmV0SWQiOiIzNGZlYWNmOC02MzU0LTQ0OTUtYjYxMS0zM2YxZmYxNmFhYmIiLCJzY29wZXMiOlsicGF5bWVudHMuY3JlYXRlIiwicGF5bWVudHMuZ2V0Il0sImlhdCI6MTY4NjAxNjQwNH0.-raE-hpnhrmJNikCxeRfvsvsX2-z4-ZzQYGJ1iUDMKY'`
+		  );
+		  var requestOptions = {
+			  method: "GET",
+			  headers: myHeaders
+		  };
+		  fetch(`${url}revisar_pago`,requestOptions)
+			  .then((response) => response.json())
+			  .then((data) => {
+				console.log("esto viene del backend",data)
+				swal("Pedido realizado")
+				navigate("/")
+
+			})
+			  .catch((error) => console.log("error", error))
+			  .finally(() => {
+				clearTimeout(timeoutId); // Cancela el setTimeout si se confirma el pago
+				actions.setPedidos([])
+			  });
+        })
+        .catch(error => {
+          console.log(error);
+        });
+
+		const timeoutId = setTimeout(() => {
+			navigate("/");
+			swal("Su tiempo de pago ha expirado");
+		  }, 35000);
+		
+        
+      };   
+      
+
 	return (
 		<>
 			<nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -72,7 +124,7 @@ export const Navbar = () => {
 							</li>
 							<li className="nav-item ms-5">
 								{store.token ? (
-									<button type="button" id="logout" onClick={handleClickLogout}>CERRAR SESIÓN</button>
+									<button type="button" id="logout" onClick={()=>actions.setModalLogout(true)}>CERRAR SESIÓN</button>
 								) : (
 									<button type="button" id="inicio" onClick={() => actions.setOpenModal(true)}>INICIA SESIÓN</button>
 								)}
@@ -91,9 +143,7 @@ export const Navbar = () => {
 							) : (
 								<i
 									type="button"
-									data-bs-target="#exampleModalToggle"
-									data-bs-toggle="modal"
-									onClick={() => setModalOpen(!modalOpen)}
+									onClick={() => actions.setModalOpen(!modalOpen)}
 									className="far fa-user fa-2x me-3"
 									style={{ color: "#723209" }}
 								></i>
@@ -127,7 +177,14 @@ export const Navbar = () => {
 													<span className="total-amount">${calculateTotal(store.pedidos)}</span>
 												</li>
 												<li className="dropdown-item">
-													<button className="boton-pago" onClick={handlePayment}>Pagar</button>
+														{store.token ? (
+															<Link to="/pagar">
+																<button className="boton-pago" onClick={handleProcesarPago}>Pagar</button>
+															</Link>
+														) : (
+															<button className="boton-pago" onClick={() =>actions.setOpenModal(true)}>Pagar</button>
+													)
+														}
 												</li>
 
 											</>
@@ -141,6 +198,10 @@ export const Navbar = () => {
 			</nav>
 			{store.openModal &&
 				<ModalLogin />
+			}
+
+			{store.modalLogout && 
+				<ModalCerrarSession/>			
 			}
 		</>
 	);

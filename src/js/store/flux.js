@@ -1,6 +1,9 @@
 
 
 const getState = ({ getStore, getActions, setStore }) => {
+
+	const url = "https://dlimaf-shiny-engine-w6x5pgq977r2ggrp-3000.preview.app.github.dev/"
+
 	return {
 		store: {
 			token: localStorage.getItem("user"),
@@ -11,16 +14,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 			users:[],
 			openModal:false,
 			edit:false,
-			loading:false
+			loading:false,
+			modalLogout:false,
+			modalConfRegistro:false,
+			response1:false,
+			quantity:1
+			
 
 			
 
 		},
 		actions: {
 
+			
+
 			loadSomeData:() =>{
 
-				fetch("https://3000-benbungle-ecommerceback-gjc60gx0upg.ws-us98.gitpod.io/hamburgers")
+				fetch(`${url}hamburgers`)
 				.then(resp=>resp.json())
 				.then(data=>{
 					console.log(data)
@@ -28,7 +38,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 				.catch(error=>console.log(error))
 
-				fetch("https://3000-benbungle-ecommerceback-gjc60gx0upg.ws-us98.gitpod.io/beverages")
+				fetch(`${url}beverages`)
 				.then(resp=>resp.json())
 				.then(data=>{
 					console.log(data)
@@ -36,7 +46,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 				.catch(error=>console.log(error))
 
-				fetch("https://3000-benbungle-ecommerceback-gjc60gx0upg.ws-us98.gitpod.io/acomp")
+				fetch(`${url}acomp`)
 				.then(resp=>resp.json())
 				.then(data=>{
 					console.log(data)
@@ -44,6 +54,26 @@ const getState = ({ getStore, getActions, setStore }) => {
 				})
 				.catch(error=>console.log(error))
 
+			},
+
+			setPedidos:(data) => {
+				const store = getStore();
+				setStore({pedidos: data})
+			},
+
+			setResponse1: (data) => {
+				const store = getStore();
+				setStore({response1: data})
+			},
+
+			setModalConfRegistro: (data) => {
+				const store = getStore();
+				setStore({modalConfRegistro: data})
+			},
+
+			setModalLogout: (data) => {
+				const store = getStore();
+				setStore({modalLogout: data})
 			},
 
 			setOpenModal:(data)=>{
@@ -76,7 +106,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 				try {
 		
-					const resp = await fetch("https://3000-benbungle-ecommerceback-gjc60gx0upg.ws-us98.gitpod.io/login",requestOptions)
+					const resp = await fetch(`${url}login`,requestOptions)
 					if (!resp.ok) {
 						swal(data, { icon: "error" });
 						return false;
@@ -117,7 +147,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				try {
 		
-					const resp = await fetch("https://3000-benbungle-ecommerceback-gjc60gx0upg.ws-us98.gitpod.io/signup",requestOptions)
+					const resp = await fetch(`${url}signup`,requestOptions)
 					if (!resp.ok) {
 						alert("There has been some error");
 						return false;
@@ -138,11 +168,41 @@ const getState = ({ getStore, getActions, setStore }) => {
 					localStorage.removeItem("emailuseractual");
 			},
 
-
-
+			addItem: (name, price, id) => {
+				const store = getStore();
+				let isExistingItem = false;
+			  
+				const updatedPedidos = store.pedidos.map((elem) => {
+				  if (elem.id === id) {
+					const quantity = elem.quantity + 1;
+					const updatedPrice = elem.price + price;
+					isExistingItem = true;
+					return {
+					  ...elem,
+					  quantity: quantity,
+					  price: updatedPrice
+					};
+				  }
+				  return elem;
+				});
+			  
+				if (!isExistingItem) {
+				  updatedPedidos.push({
+					name: name,
+					price: price,
+					id: id,
+					quantity: 1
+				  });
+				}
+			  
+				setStore({
+				  pedidos: updatedPedidos
+				});
+			  
+				console.log(store.pedidos);
+			  }
 		}
 
-			
 
 	}
 

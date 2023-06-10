@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/login.css"
 import logousuario from "../../img/logo_navbar-02.png"
-import { Loading } from "./loading";
 
 export const ModalLogin = () => {
     
@@ -12,7 +11,6 @@ export const ModalLogin = () => {
     const [password,setPassword] = useState('');
 
     const handleSubmit = (e) => {
-        actions.setLoading(true)
         e.preventDefault()
         actions.login(email, password);
         console.log("email",email)
@@ -30,7 +28,7 @@ export const ModalLogin = () => {
                 actions.setOpenModal(true);
                 swal("¡Error!", "Usuario o contraseña errónea :(", "error"); 
             }
-          }, 1500);
+          }, 2000);
 
 
     }

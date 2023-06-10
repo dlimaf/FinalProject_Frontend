@@ -7,6 +7,7 @@ import { Demo } from "./views/demo";
 import { Single } from "./views/single";
 import { Signup } from "./views/signup";
 import { Cuenta } from "./views/cuenta";
+import { Pagar } from "./views/pagos";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
@@ -33,6 +34,7 @@ const Layout = () => {
 									<Cuenta />
 							}
 						/>
+						<Route path="/pagar" element={<Pagar/>} />
 						<Route path="/demo" element={<Demo />} />
 						<Route path="/single/:theid" element={<Single />} />
 						<Route path="*" element={<h1>Not found!</h1>} />

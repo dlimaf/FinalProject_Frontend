@@ -41,13 +41,13 @@ export const Ofertas = () => {
                         <div className="row">
                             {store.hamburguesas.map((hamburguesas,index)=>{
                                 return (
-                                        <div className="col-md-4 mt-4" key={index}>
+                                        <div className="col-md-4 mt-4" key={hamburguesas.id}>
                                             <Card
                                             name={hamburguesas.name} 
                                             image={"https://img.freepik.com/foto-gratis/vista-frontal-hamburguesa-stand_141793-15542.jpg"}
                                             description={hamburguesas.description}
                                             price={hamburguesas.price}
-                                            id={index} 
+                                            id={hamburguesas.id}
                                             />
                                         </div>  
                             )
@@ -60,13 +60,13 @@ export const Ofertas = () => {
                             <div className="row">
                                 {store.bebidas.map((bebidas,index)=>{
                                     return (
-                                            <div className="col-md-4 mt-4" key={index}>
+                                            <div className="col-md-4 mt-4" key={bebidas.id}>
                                                 <Card
                                                 name={bebidas.name} 
                                                 image={"https://www.eluniverso.com/resizer/XDCSRrWf-mQVhi9fw2igV2hzPg8=/1005x670/smart/filters:quality(70)/cloudfront-us-east-1.images.arcpublishing.com/eluniverso/6O3SHHDC55GTHHHGY4HAWTVD5A.jpg"}
                                                 description={bebidas.description}
                                                 price={bebidas.price}
-                                                id={index} 
+                                                id={bebidas.id} 
                                                 />
                                             </div>  
                                 )
@@ -79,13 +79,13 @@ export const Ofertas = () => {
                             <div className="row">
                                 {store.acompañamientos.map((acompañamientos,index)=>{
                                     return (
-                                            <div className="col-md-4 mt-4" key={index}>
+                                            <div className="col-md-4 mt-4" key={acompañamientos.id}>
                                                 <Card
                                                 name={acompañamientos.name} 
                                                 image={"https://www.7diasdesabor.com/wp-content/uploads/2022/10/PAPAS-SUPREMAS-WEB.jpg"}
                                                 description={acompañamientos.description}
                                                 price={acompañamientos.price}
-                                                id={index} 
+                                                id={acompañamientos.id} 
                                                 />
                                             </div>  
                                 )

@@ -1,0 +1,27 @@
+.notification {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: linear-gradient(
+      90deg,
+      #ef5b50 0%,
+      #ed584d 29%,
+      #e64e42 55%,
+      #db3f30 78%,
+      #cc2a19 100%
+    );
+    border-radius: 50%;
+  }
+  
+  .notification span {
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 18px;
+    color: #ffffff;
+  }
