@@ -11,7 +11,7 @@ export const DatosCuenta = () => {
 
     const [ guardar, setGuardar] = useState(false)
 
-    const url = "https://dlimaf-shiny-engine-w6x5pgq977r2ggrp-3000.preview.app.github.dev/"
+    const url = process.env.BACKEND_URL
 
 
     console.log("userData",userData)

@@ -18,7 +18,8 @@ export const Navbar = () => {
 
     const [response2, setResponse2] = useState(null);
 
-	const url = "https://dlimaf-shiny-engine-w6x5pgq977r2ggrp-3000.preview.app.github.dev/"
+	const url = process.env.BACKEND_URL
+	const token_api= process.env.API_KEY
 	
 	const calculateTotal = (pedidos) => {
 		let total = 0;
@@ -51,7 +52,7 @@ export const Navbar = () => {
 		  let myHeaders = new Headers();
 		  myHeaders.append(
 			  "Authorization",
-			  `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJidXNpbmVzc01hY2hJZCI6IjI1NDU4MDM5LWYwM2UtNDE1OS04Y2IxLTAzYzA5MzMwMmEzYyIsImJ1c2luZXNzU2VjcmV0SWQiOiIzNGZlYWNmOC02MzU0LTQ0OTUtYjYxMS0zM2YxZmYxNmFhYmIiLCJzY29wZXMiOlsicGF5bWVudHMuY3JlYXRlIiwicGF5bWVudHMuZ2V0Il0sImlhdCI6MTY4NjAxNjQwNH0.-raE-hpnhrmJNikCxeRfvsvsX2-z4-ZzQYGJ1iUDMKY'`
+			  `Bearer ${token_api}`
 		  );
 		  var requestOptions = {
 			  method: "GET",
