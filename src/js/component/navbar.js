@@ -48,7 +48,6 @@ export const Navbar = () => {
           setResponse2(data.token_key)
 		  console.log("data qr", data)
           console.log("token_key",response2);
-          // Aquí puedes manipular los datos recibidos y actualizar tu interfaz de usuario
 		  let myHeaders = new Headers();
 		  myHeaders.append(
 			  "Authorization",
@@ -64,6 +63,44 @@ export const Navbar = () => {
 				console.log("esto viene del backend",data)
 				swal("Pedido realizado")
 				navigate("/")
+				let myHeaders = new Headers();
+				myHeaders.append("Content-Type", "application/json");
+
+				const { user } = store.userData
+
+				var raw = JSON.stringify({
+					  "user_id": user.id,
+					  "hamburgers": [
+						  {
+							  "hamburger_id": 1,
+							  "quantity": 2
+						  }
+					  ],
+					  "acompañamientos": [
+						  {
+							  "acompañamiento_id": 1,
+							  "quantity": 1
+						  }
+					  ],
+					  "beverages": [
+						  {
+							  "beverage_id": 1,
+							  "quantity": 3
+						  }
+					  ]
+				  });
+
+				var requestOptions = {
+					  method: 'POST',
+					  headers: myHeaders,
+					  body: raw,
+					  redirect: 'follow'
+				  };
+
+				fetch(`${url}create/order`, requestOptions)
+					  .then(response => response.json())
+					  .then(data => console.log("esta es la orden",data))
+					  .catch(error => console.log('error', error)); 
 
 			})
 			  .catch((error) => console.log("error", error))

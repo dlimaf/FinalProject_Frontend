@@ -7,38 +7,13 @@ export const DatosCuenta = () => {
 
     const { store, actions } = useContext(Context)
 
-    const [ userData , setUserData ] = useState(null)
-
     const [ guardar, setGuardar] = useState(false)
 
     const url = process.env.BACKEND_URL
 
 
-    console.log("userData",userData)
-
-    const informacionUsuario = () => {
-        let myHeaders = new Headers();
-        myHeaders.append(
-            "Authorization",
-            `Bearer ${JSON.parse(localStorage.getItem("user"))}`
-        );
-        var requestOptions = {
-            method: "GET",
-            headers: myHeaders
-        };
-        fetch(`${url}privada`,requestOptions)
-            .then((response) => response.json())
-            .then((data) => {
-                setUserData(data)
-                console.log("esta bien la respuesta",data)
-                return JSON.stringify(data)
-            }
-                )
-            .catch((error) => console.log("error", error));
-    };
-
     useEffect(() => {
-            informacionUsuario()
+            actions.informacionUsuario()
         
     },[guardar])
 
@@ -62,7 +37,7 @@ export const DatosCuenta = () => {
 
     function ModoEdicionActivado() {
 
-        const { user } = userData || {};
+        const { user } = store.userData || {};
 
         const [new_Name, setNew_Name] = useState(user?.name || "")
         const [new_Apellido, setNew_Apellido] = useState(user?.apellido || "")
@@ -187,7 +162,7 @@ export const DatosCuenta = () => {
 
     function ModoEdicionDesactivado() {
 
-        const { user } = userData || {};
+        const { user } = store.userData || {};
 
         return (
             <>

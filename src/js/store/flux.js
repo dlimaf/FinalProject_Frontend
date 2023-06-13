@@ -18,7 +18,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			modalLogout:false,
 			modalConfRegistro:false,
 			response1:false,
-			quantity:1
+			quantity:1,
+			userData: null
+
 			
 
 			
@@ -26,7 +28,26 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 		actions: {
 
-			
+			informacionUsuario: () => {
+				let myHeaders = new Headers();
+				myHeaders.append(
+					"Authorization",
+					`Bearer ${JSON.parse(localStorage.getItem("user"))}`
+				);
+				var requestOptions = {
+					method: "GET",
+					headers: myHeaders
+				};
+				fetch(`${url}privada`,requestOptions)
+					.then((response) => response.json())
+					.then((data) => {
+						setStore({userData:data})
+						console.log("esta bien la respuesta",data)
+						return JSON.stringify(data)
+					}
+						)
+					.catch((error) => console.log("error", error));
+			},
 
 			loadSomeData:() =>{
 
@@ -173,7 +194,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				let isExistingItem = false;
 			  
 				const updatedPedidos = store.pedidos.map((elem) => {
-				  if (elem.id === id) {
+				  if (elem.id === id && elem.name === name) {
 					const quantity = elem.quantity + 1;
 					const updatedPrice = elem.price + price;
 					isExistingItem = true;
