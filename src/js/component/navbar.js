@@ -24,7 +24,7 @@ export const Navbar = () => {
 	const calculateTotal = (pedidos) => {
 		let total = 0;
 		pedidos.forEach((pedido) => {
-			total += pedido.price;
+			total += pedido.hamburger_price || pedido.beverages_price || pedido.acompañamientos_price;
 		});
 		return total;
 	};
@@ -205,8 +205,8 @@ export const Navbar = () => {
 											<li className="dropdown-item">Vacio</li>
 										) : (
 											<>
-												{store.pedidos.map((pedido, i) => (
-													<li key={i} className="">
+												{store.pedidos.map((pedido) => (
+													<li className="" key={pedido.id}>
 														<CartItem pedido={pedido} />
 													</li>
 												))}

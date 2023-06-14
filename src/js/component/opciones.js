@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import "../../styles/ofertas.css";
-import { Card } from "../component/card.js";
+import { Card, CardAcompañamientos, CardBeverages, CardHamburgers } from "../component/card.js";
 import { Context } from "../store/appContext";
 
 export const Ofertas = () => {
@@ -39,15 +39,16 @@ export const Ofertas = () => {
                 <div className="tab-pane fade show active" id="pills-burger" role="tabpanel" aria-labelledby="pills-burger-tab" tabIndex="0">
                     <div className="container mt-3">
                         <div className="row">
-                            {store.hamburguesas.map((hamburguesas,index)=>{
+                            {store.hamburguesas.map((hamburguesas)=>{
                                 return (
                                         <div className="col-md-4 mt-4" key={hamburguesas.id}>
-                                            <Card
+                                            <CardHamburgers
                                             name={hamburguesas.name} 
                                             image={"https://img.freepik.com/foto-gratis/vista-frontal-hamburguesa-stand_141793-15542.jpg"}
                                             description={hamburguesas.description}
                                             price={hamburguesas.price}
                                             id={hamburguesas.id}
+                                            hamburguesas={hamburguesas}
                                             />
                                         </div>  
                             )
@@ -61,12 +62,13 @@ export const Ofertas = () => {
                                 {store.bebidas.map((bebidas,index)=>{
                                     return (
                                             <div className="col-md-4 mt-4" key={bebidas.id}>
-                                                <Card
+                                                <CardBeverages
                                                 name={bebidas.name} 
                                                 image={"https://www.eluniverso.com/resizer/XDCSRrWf-mQVhi9fw2igV2hzPg8=/1005x670/smart/filters:quality(70)/cloudfront-us-east-1.images.arcpublishing.com/eluniverso/6O3SHHDC55GTHHHGY4HAWTVD5A.jpg"}
                                                 description={bebidas.description}
                                                 price={bebidas.price}
                                                 id={bebidas.id} 
+                                                bebidas={bebidas}
                                                 />
                                             </div>  
                                 )
@@ -80,12 +82,13 @@ export const Ofertas = () => {
                                 {store.acompañamientos.map((acompañamientos,index)=>{
                                     return (
                                             <div className="col-md-4 mt-4" key={acompañamientos.id}>
-                                                <Card
+                                                <CardAcompañamientos
                                                 name={acompañamientos.name} 
                                                 image={"https://www.7diasdesabor.com/wp-content/uploads/2022/10/PAPAS-SUPREMAS-WEB.jpg"}
                                                 description={acompañamientos.description}
                                                 price={acompañamientos.price}
-                                                id={acompañamientos.id} 
+                                                id={acompañamientos.id}
+                                                acompañamientos={acompañamientos} 
                                                 />
                                             </div>  
                                 )
