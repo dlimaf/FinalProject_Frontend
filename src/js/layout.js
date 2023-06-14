@@ -7,11 +7,14 @@ import { Demo } from "./views/demo";
 import { Single } from "./views/single";
 import { Signup } from "./views/signup";
 import { Cuenta } from "./views/cuenta";
+import { Stepper } from "./views/stepper";
+import { Loading } from "./views/loading";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { Back } from "./component/atras"
+
 
 //create your first component
 const Layout = () => {

@@ -1,0 +1,14 @@
+.stepper-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .stepper-point {
+    width: 100px; /* Adjust the width as needed */
+    height: 20px; /* Adjust the height as needed */
+    background-color: #ccc; /* Default color for inactive points */
+  }
+  
+  .stepper-point.active {
+    background-color: #895030; /* Color for active point */
+  }
