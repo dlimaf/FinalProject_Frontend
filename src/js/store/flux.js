@@ -19,7 +19,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 			modalConfRegistro:false,
 			response1:false,
 			quantity:1,
-			userData: null
+			userData: {
+				user:{
+					id:1
+				}
+			}
 
 			
 
