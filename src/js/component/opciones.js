@@ -8,7 +8,13 @@ export const Ofertas = () => {
     const { store, actiones} = useContext(Context);    
     const [ opciones, setOpciones ] = useState("burgers")
 
-   
+    const imageCardBeverages = ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlNmSONv8hn-mV8d71AqVcLpIvL24r_0QxN7PVwUHtfL24ZaVe4osVKPlj8aU2yL9wLd8&usqp=CAU",
+"https://jumboargentina.vtexassets.com/arquivos/ids/770635-800-600?v=638128498298730000&width=800&height=600&aspect=true",    "https://images-ext-2.discordapp.net/external/04c1r93sL2g17JjkIgOEL9D5Vp7vo2bke8OQkJR1wm8/https/www.novasalud.cl/media/catalog/product/cache/e24405f34b9e7681ae870ab933417430/4/0/4003458_2.jpg?width=1173&height=1173","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKyOMzUEi168N4KMFJhIQotVzcX_BWR1tKtA&usqp=CAU","https://images-ext-1.discordapp.net/external/cbpWn3OyyW_nuLVXZGBsUeOuX8gvYuB5KAed6DbZO0M/%3Fsw%3D1000%26sh%3D1000/https/beta.cruzverde.cl/dw/image/v2/BDPM_PRD/on/demandware.static/-/Sites-masterCatalog_Chile/default/dw55976fe3/images/large/292230-benedictino-agua-natural-sin-gas-500-ml.jpg?width=1173&height=1173"]
+    const imageCardAcompañamientos = ["https://images-ext-2.discordapp.net/external/gHpz8NQ5TxyagB9OcXhsmAUSsHlJhMftxaheOBsYDo0/%3Fq%3Dtbn%3AANd9GcSmn6vF0CnjGSoRyi6Y0k5qNWGCa7A7acbC7A%26usqp%3DCAU/https/encrypted-tbn0.gstatic.com/images?width=900&height=504",
+    "https://images-ext-2.discordapp.net/external/DQQM7dQVo1lYj5nSIKyAnzcrfF2gr4qxDFRtAdVtGes/https/www.schaer.com/sites/default/files/styles/landscape_xxl/public/1965_Onion%2520Rings%2520with%2520Dip%2520Sauce.jpg?width=1563&height=1173",
+    "https://images-ext-2.discordapp.net/external/f86_7jEIr0PsW_2mWjJxE-iG6eeID8pHXLygJDuM-kY/%3Fq%3Dtbn%3AANd9GcQrTK6pGx3f1NqBTzcTTN_fmFDtjvet81gCJg%26usqp%3DCAU/https/encrypted-tbn0.gstatic.com/images?width=690&height=657", 
+    "https://images-ext-2.discordapp.net/external/rrSRD-4ZU_baWjIXhtKpcZ1Yzb4VFocXaE3i704ds-o/https/img.freepik.com/fotos-premium/waffle-fritas-papas-fritas-color-amarillo-dorado-ahumado-fondo-negro_504796-224.jpg?width=1761&height=1173",
+     ]
 
     return (
         <div className="ms-5 mt-4">
@@ -64,7 +70,7 @@ export const Ofertas = () => {
                                             <div className="col-md-4 mt-4" key={bebidas.id}>
                                                 <CardBeverages
                                                 name={bebidas.name} 
-                                                image={"https://www.eluniverso.com/resizer/XDCSRrWf-mQVhi9fw2igV2hzPg8=/1005x670/smart/filters:quality(70)/cloudfront-us-east-1.images.arcpublishing.com/eluniverso/6O3SHHDC55GTHHHGY4HAWTVD5A.jpg"}
+                                                image={imageCardBeverages[index]}
                                                 description={bebidas.description}
                                                 price={bebidas.price}
                                                 id={bebidas.id} 
@@ -84,7 +90,7 @@ export const Ofertas = () => {
                                             <div className="col-md-4 mt-4" key={acompañamientos.id}>
                                                 <CardAcompañamientos
                                                 name={acompañamientos.name} 
-                                                image={"https://www.7diasdesabor.com/wp-content/uploads/2022/10/PAPAS-SUPREMAS-WEB.jpg"}
+                                                image={imageCardAcompañamientos[index]}
                                                 description={acompañamientos.description}
                                                 price={acompañamientos.price}
                                                 id={acompañamientos.id}

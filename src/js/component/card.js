@@ -65,7 +65,7 @@ export const CardHamburgers = ({ name, image, description, price,id, hamburguesa
     return (
 
         <div className="card" style={{width: "18rem"}} key={id}>
-            <img src={image} className="card-img-top" alt="..."/>
+            <img src={image} className="card-img-top" id="card_img_bev" alt="..."/>
             <div className="card-body">
                 <div>
                     <div className="row">

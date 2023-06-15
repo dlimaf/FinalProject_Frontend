@@ -14,8 +14,8 @@ export const Pagar = () => {
             <img id="modal_key" src={store.response1?.mach_data?.image_base_64} />
         </div>)
         : (
-                <div className="d-flex justify-content-center">
-                    <h1>Loading.....</h1>
+                <div className="d-flex justify-content-center mt-5 mb-5">
+                    <h1 className="mt-5 mb-5">.....</h1>
                 </div>
         )
     }
